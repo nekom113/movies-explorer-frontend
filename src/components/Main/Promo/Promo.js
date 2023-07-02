@@ -10,7 +10,7 @@ export default function Promo() {
                     </a>
                 </li>
                 <li>
-                    <a href="/#techno-section" className="promo-section__link">
+                    <a href="/#tech-section" className="promo-section__link">
                         Технологии
                     </a>
                 </li>
