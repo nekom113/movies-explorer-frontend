@@ -18,6 +18,8 @@ export default function AboutMe() {
                     <a
                         className='about-me-section__link'
                         href='https://github.com/nekom113'
+                        target='_blank'
+                        rel="noreferrer"
                     >
                         Github
                     </a>
