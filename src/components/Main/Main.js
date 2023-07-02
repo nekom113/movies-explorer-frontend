@@ -5,6 +5,7 @@ import AboutProject from "./AboutProject/AboutProject";
 import Techs from "./Tech/Tech";
 import AboutMe from "./AboutMe/AboutMe";
 import Portfolio from "./Portfolio/Portfolio";
+import Footer from "../Footer/Footer";
 
 export default function Main() {
     return (
@@ -14,7 +15,8 @@ export default function Main() {
             <AboutProject/>
             <Techs/>
             <AboutMe/>
-            <Portfolio />
+            <Portfolio/>
+            <Footer/>
         </>
     )
 }

@@ -1,6 +1,6 @@
 .portfolio-section {
     margin: 0;
-    padding: 101px 70px 0;
+    padding: 101px 70px 125px;
 }
 
 .portfolio-section__title {
@@ -17,9 +17,9 @@
 
 .portfolio-section__links-list {
     margin: 0;
-    margin-block-end:0;
-    padding-inline-start:0;
-    margin-block-start:0;
+    margin-block-end: 0;
+    padding-inline-start: 0;
+    margin-block-start: 0;
     padding: 50px 0 0 0;
     list-style: none;
 }
@@ -73,7 +73,7 @@
 @media (max-width: 1024px) {
     .portfolio-section {
         margin: 0;
-        padding: 91px 50px 0;
+        padding: 91px 50px 90px;
     }
 
     .portfolio-section__link {
@@ -94,12 +94,18 @@
 }
 
 @media (max-width: 480px) {
+    .portfolio-section {
+        padding: 70px 10px 0;
+    }
+
     .portfolio-section__title {
         font-size: 14px;
     }
+
     .portfolio-section__links-list {
         padding-top: 40px;
     }
+
     .portfolio-section__link {
         font-size: 18px;
         letter-spacing: -0.72px;
