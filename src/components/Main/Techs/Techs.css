@@ -1,3 +1,65 @@
-.tech-section{
-    padding: 100px 70px 0;
+.tech-section {
+    padding: 100px 70px 100px;
+    width: auto;
+    margin: 0;
+}
+
+.techs-section__header-title {
+    margin: 0;
+    padding: 60px 0 23px 0;
+    color: #FFF;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.88px;
+    border-bottom: 1px solid rgba(218, 218, 218, 1);
+}
+
+.techs-section__title {
+    margin: 90px 0 0;
+    padding: 0;
+    color: #FFF;
+    text-align: center;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: -2px;
+
+}
+
+.techs-section__subtitle {
+    margin: 26px 0 0;
+    padding: 0;
+    color: #FFF;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: -0.56px;
+}
+
+.techs-section__list {
+    margin-top: 100px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.techs-section__list-item {
+    width: 90px;
+    padding: 21px 0;
+    background-color: #303030;
+    text-align: center;
+    font-weight: 400;
+    font-size: 14px;
+    border-radius: 10px;
+    color: #FFF;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.56px;
 }
