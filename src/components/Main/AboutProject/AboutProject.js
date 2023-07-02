@@ -2,7 +2,7 @@ import './AboutProject.css'
 
 export default function AboutProject() {
     return (
-        <section className='project-section' id='project-section'>
+        <section className='project-section' id='project'>
             <h2 className='project-section__title'> О проекте</h2>
             <div className='project-section__description-block'>
                 <div className='project-section__column'>
@@ -10,7 +10,8 @@ export default function AboutProject() {
                         Дипломный проект включал 5 этапов
                     </h3>
                     <p className='project-section__description-block-paragraph'>
-                        Составление плана, работу над&nbsp;бэкендом, вёрстку, добавление функциональности и&nbsp;финальные
+                        Составление плана, работу над&nbsp;бэкендом, вёрстку, добавление функциональности
+                        и&nbsp;финальные
                         доработки.
                     </p>
                 </div>
