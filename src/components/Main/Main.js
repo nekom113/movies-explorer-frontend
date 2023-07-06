@@ -5,6 +5,7 @@ import Techs from "./Tech/Tech";
 import AboutMe from "./AboutMe/AboutMe";
 import Portfolio from "./Portfolio/Portfolio";
 import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 export default function Main() {
     return (
@@ -15,6 +16,7 @@ export default function Main() {
             <Techs/>
             <AboutMe/>
             <Portfolio/>
+            <Footer/>
         </>
     )
 }
