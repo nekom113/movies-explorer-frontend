@@ -5,41 +5,57 @@
     min-height: 78px;
     box-sizing: border-box;
     margin: 0 70px;
+    /*position: relative;*/
 }
 
-.header__links{
-  display: flex;
-  align-items: center;
-  gap: 30px;
+.header__links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
-.header__signup{
-  color: #FFFFFF;
-  opacity: 1;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 16px;
-  text-decoration: none;
-  transition: opacity .3s ease-out;
+.header__burger-menu {
+    position: relative;
+    background-color: #A0A0A0;
+    right: -30px;
+    width: 67.71vw;
+    height: 100vh;
 }
-.header__signin-button{
-  padding: 9px 23px;
-  color: #000000;
-  background-color: #3DDC84;
-  border: none;
-  text-decoration: none;
-  border-radius: 3px;
-  font-weight: 500;
-  line-height: 16px;
-  font-size: 12px;
-  opacity: 1;
-  transition: opacity .3s ease-out;
+
+.header__signup {
+    color: #FFFFFF;
+    opacity: 1;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    text-decoration: none;
+    transition: opacity .3s ease-out;
 }
-.header__signin-button:hover{
-  opacity: .8;
+
+.header__signin-button {
+    padding: 9px 23px;
+    color: #000000;
+    background-color: #3DDC84;
+    border: none;
+    text-decoration: none;
+    border-radius: 3px;
+    font-weight: 500;
+    line-height: 16px;
+    font-size: 12px;
+    opacity: 1;
+    transition: opacity .3s ease-out;
 }
-.header__signup:hover{
-  opacity: .7;
+
+.header__signin-button:hover {
+    opacity: .8;
+}
+
+.header__signup:hover {
+    opacity: .7;
+}
+
+.header__burger {
+    display: none;
 }
 
 @media (max-width: 1160px) {
@@ -48,12 +64,32 @@
 
     }
 }
+
 @media (max-width: 830px) {
     .header {
         margin: 0 30px;
     }
-    .header__links{
+
+    .header__links {
+        display: none;
+    }
+
+    .header__links {
         gap: 14px;
+    }
+
+    .header__burger {
+        display: block;
+        width: 44px;
+        height: 44px;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='44' height='44' viewBox='0 0 44 44' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M36 14L8 14V11L36 11V14Z' fill='white'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M36 24L8 24V21L36 21V24Z' fill='white'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M36 34L8 34V31L36 31V34Z' fill='white'/%3e%3c/svg%3e ");
+    }
+
+    .header__burger-menu {
+
     }
 }
 
@@ -61,4 +97,5 @@
     .header {
         margin: 0 14px;
     }
+
 }

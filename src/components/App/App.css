@@ -1,15 +1,24 @@
-.app{
-  background-color:#202020;
-  min-width: 100%;
-  min-height: 100vh;
-  color: #FFFFFF;
-  font-size: 14px;
-  font-weight: 400;
-  font-family: 'Inter', Arial, sans-serif;
+.app {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #202020;
+    max-width: 100%;
+    min-height: 100vh;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Inter', Arial, sans-serif;
 
 }
 
-.app__blocks{
-  margin: 0 auto;
-  max-width: 1280px;
+.app__blocks {
+    margin: 0 auto;
+    padding: 0;
+    max-width: 1280px;
+    flex: 1 0 auto;
+}
+
+.app__footer-block {
+    flex: 0 0 auto;
 }
