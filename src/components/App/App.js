@@ -10,7 +10,6 @@ export default function App() {
     return (
         <div className='app'>
             <div className='app__blocks'>
-                <Header/>
                 <Routes>
                     <Route path='/' element={<Main/>}/>
                     <Route path='/movies' element={<Movies/>}/>
