@@ -28,9 +28,9 @@
 }
 
 .navigation__links-block-profile {
-    margin-left: 61px;
+    margin-left: 37px;
     display: flex;
-    gap: 15px;
+    gap: 7px;
     transition: opacity .3s ease-out;
     align-items: center;
 }
@@ -63,6 +63,7 @@
 }
 
 .navigation__profile-icon {
+    margin-right: 2px;
     display: block;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='26' height='26' viewBox='0 0 26 26' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='26' height='26' rx='13' fill='%23313131'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M14.4296 14.9678C15.7914 14.4057 16.7499 13.0648 16.7499 11.5C16.7499 9.42893 15.0709 7.75 12.9999 7.75C10.9288 7.75 9.24986 9.42893 9.24986 11.5C9.24986 13.0647 10.2082 14.4056 11.57 14.9677C10.1753 15.1999 8.89238 15.7659 7.80811 16.5806L9.18966 18.4194C10.2509 17.6221 11.5685 17.15 12.9996 17.15C14.4307 17.15 15.7483 17.6221 16.8096 18.4194L18.1911 16.5806C17.1069 15.766 15.8241 15.2 14.4296 14.9678Z' fill='white'/%3e%3c/svg%3e ");
     width: 26px;
@@ -112,10 +113,6 @@
 }
 
 @media (max-width: 790px) {
-    .header {
-        margin: 0 30px;
-    }
-
     .navigation__links-list {
         display: none;
     }
@@ -133,7 +130,7 @@
     .navigation__burger-menu {
         position: fixed;
         z-index: 5;
-        background-color: #A0A0A0;
+        background-color: #202020;
         top: 0;
         right: 0;
         width: 65.7vw;
@@ -171,5 +168,9 @@
     .navigation__close-btn {
         right: 15px;
         top: 15px;
+    }
+
+    .navigation__burger {
+        height: 43px;
     }
 }

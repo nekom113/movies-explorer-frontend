@@ -1,11 +1,10 @@
 .header {
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 78px;
-    box-sizing: border-box;
+    min-height: 74px;
     margin: 0 70px;
-    /*position: relative;*/
 }
 
 .header__links {
@@ -48,7 +47,6 @@
 }
 
 
-
 @media (max-width: 1160px) {
     .header {
         margin: 0 50px;
@@ -60,7 +58,6 @@
     .header {
         margin: 0 30px;
     }
-
 
 
     .header__links {

@@ -2,7 +2,6 @@ import './MoviesCardList.css'
 import MoviesCard from "../MoviesCard/MoviesCard";
 
 export default function MoviesCardList({savedMovieBtnIsActive}) {
-    console.log({savedMovieBtnIsActive})
     return (
         <section className='section-movie-cards'>
             <div className='section-movie-cards-list__block'>
