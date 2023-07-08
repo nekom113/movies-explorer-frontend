@@ -1,7 +1,7 @@
-import './Registration.css'
+import './Register.css'
 import RegLoginUserForm from "../RegLoginUserForm/RegLoginUserForm";
 
-export default function Registration(){
+export default function Register(){
     return(
             <RegLoginUserForm isRegistrationForm={true} />
     )

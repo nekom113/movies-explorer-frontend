@@ -34,7 +34,6 @@
     font-weight: 500;
     line-height: 16px;
     font-size: 12px;
-    opacity: 1;
     transition: opacity .3s ease-out;
 }
 
@@ -71,4 +70,11 @@
         margin: 0 14px;
     }
 
+    .header__signin-button {
+        padding: 6px 10px;
+    }
+
+    .header__signup-button {
+        font-size: 10px;
+    }
 }

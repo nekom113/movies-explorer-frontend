@@ -13,6 +13,7 @@ export default function SearchForm() {
                         type="submit"
                         className="section-search__form-button"
                         value="Поиск"
+                        onClick={() => alert('Вы нажали кнопку "Поиск"')}
                     />
                 </label>
                 <label className="section-search__toggle">

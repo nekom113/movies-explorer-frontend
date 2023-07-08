@@ -1,5 +1,5 @@
 .project-section {
-    padding: 110px 70px 110px;
+    padding: 99px 70px 110px;
 }
 
 .project-section__title {
@@ -33,7 +33,7 @@
 
 .project-section__description-block-paragraph {
     margin: 0;
-    padding: 22px 0 0 0;
+    padding: 23px 0 0 0;
     color: #FFF;
     font-size: 14px;
     font-style: normal;
@@ -76,7 +76,7 @@
 
 @media (max-width: 1160px) {
     .project-section {
-        padding: 90px 50px;
+        padding: 78px 50px;
     }
 
     .project-section__description-block {
@@ -84,7 +84,7 @@
     }
 
     .project-section__description-block-paragraph {
-        margin-top: 22px;
+        margin-top: 0;
         font-size: 12px;
         line-height: 1.5;
     }
@@ -96,7 +96,7 @@
 
 @media (max-width: 540px) {
     .project-section {
-        padding: 70px 18px;
+        padding: 43px 18px;
     }
 
     .project-section__title {
@@ -116,12 +116,13 @@
     }
 
     .project-section__scale {
-        margin-top: 62px;
+        margin-top: 60px;
         grid-template-columns: 100px 1fr;
     }
 
     .project-section__description-block-paragraph {
-        margin-top: 16px;
+        margin-top: 0;
+        padding-top: 18px;
         font-size: 11px;
         line-height: 1.45;
     }

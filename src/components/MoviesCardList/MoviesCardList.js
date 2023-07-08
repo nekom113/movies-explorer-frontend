@@ -34,7 +34,8 @@ export default function MoviesCardList({savedMovieBtnIsActive}) {
                 }
             </div>
 
-            <button className='section-movie-cards__loading-btn'>Ещё</button>
+            <button className='section-movie-cards__loading-btn' onClick={() => alert('Вы нажали кнопку "Ещё"')}>Ещё
+            </button>
         </section>
     )
 }

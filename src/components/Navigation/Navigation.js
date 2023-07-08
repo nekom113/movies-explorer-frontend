@@ -16,7 +16,7 @@ export default function Navigation() {
                     <NavLink and to='/saved-movies' className='navigation__links-item'>Сохранённые фильмы</NavLink>
                 </li>
                 <li>
-                    <NavLink and to='/' className='navigation__links-block-profile'>
+                    <NavLink and to='/profile' className='navigation__links-block-profile'>
                         <p className='navigation__links-profile'>Аккаунт</p>
                         <span className='navigation__profile-icon'/>
                     </NavLink>

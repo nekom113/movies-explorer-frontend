@@ -1,5 +1,5 @@
 .tech-section {
-    padding: 100px 70px 100px;
+    padding: 103px 70px 100px;
     width: auto;
     margin: 0;
     background-color: #272727;
@@ -32,7 +32,7 @@
 
 .tech-section__subtitle {
     margin: 26px 0 0;
-    padding: 0;
+    padding: 0 300px;
     color: #FFF;
     text-align: center;
     font-size: 14px;
@@ -43,7 +43,8 @@
 }
 
 .tech-section__list {
-    margin-top: 100px;
+    padding: 0;
+    margin: 100px 0 0 0;
     list-style: none;
     display: flex;
     justify-content: center;
@@ -67,7 +68,7 @@
 
 @media (max-width: 1160px) {
     .tech-section {
-        padding: 90px 50px;
+        padding: 100px 50px;
     }
 
     .tech-section__title {
@@ -77,12 +78,13 @@
     .tech-section__subtitle {
         margin-top: 23px;
         font-size: 12px;
+        padding: 0 105px;
         line-height: 1.45;
     }
 
     .tech-section__list {
         margin-top: 85px;
-        padding: 0 10px;
+        padding: 0;
     }
 
     .tech-section__list-item {
@@ -93,7 +95,7 @@
 
 @media (max-width: 440px) {
     .tech-section {
-        padding: 70px 18px;
+        padding: 98px 18px;
         background-color: #202020;
     }
 
@@ -105,13 +107,14 @@
     }
 
     .tech-section__title {
-        margin-top: 60px;
+        margin-top: 49px;
         font-size: 30px;
         letter-spacing: -1.2px;
     }
 
     .tech-section__subtitle {
-        margin-top: 24px;
+        padding: 0;
+        margin-top: 12px;
         font-size: 11px;
         line-height: 16px;
         letter-spacing: -0.44px;
@@ -119,7 +122,7 @@
 
     .tech-section__list {
         margin: 50px auto 0;
-        max-width: 198px;
+        max-width: 180px;
         justify-content: flex-start;
     }
 }

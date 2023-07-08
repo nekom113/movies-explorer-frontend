@@ -6,7 +6,7 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 import NotFound from "../NotFound/NotFound";
 import ProfileUpdateForm from "../ProfileUpdateForm/ProfileUpdateForm";
 import Login from "../Login/Login";
-import Registration from "../Registration/Registration";
+import Register from "../Register/Register";
 
 export default function App() {
     return (
@@ -18,7 +18,7 @@ export default function App() {
                     <Route path='/saved-movies' element={<SavedMovies/>}/>
                     <Route path='/profile' element={<ProfileUpdateForm/>}/>
                     <Route path='/signin' element={<Login/>}/>
-                    <Route path='/signup' element={<Registration/>}/>
+                    <Route path='/signup' element={<Register/>}/>
                     <Route path='*'  element={<NotFound/>} />
                 </Routes>
             </div>

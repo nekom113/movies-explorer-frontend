@@ -1,5 +1,5 @@
 .about-me-section {
-    padding: 100px 70px 0;
+    padding: 112px 70px 0;
     width: auto;
     margin: 0;
 }
@@ -88,7 +88,7 @@
     }
 
     .about-me-section {
-        padding: 90px 50px 0;
+        padding: 80px 50px 0;
     }
 
     .about-me-section__avatar {
@@ -137,7 +137,7 @@
 
 @media (max-width: 490px) {
     .about-me-section {
-        padding: 70px 14px 0;
+        padding: 44px 14px 0;
     }
 
     .about-me-section__name {
@@ -177,4 +177,14 @@
         font-size: 11px;
         line-height: 1.45;
     }
+
+    .about-me-section__header-title {
+        font-size: 18px;
+        padding-bottom: 26px;
+    }
+
+    .about-me-section__link {
+        margin-top: 57px;
+    }
+
 }
