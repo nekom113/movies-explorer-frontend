@@ -33,6 +33,11 @@
     opacity: 0.6;
 }
 
+.section-search__form-input:focus {
+    border-bottom: 2px solid #4285F4;
+    color: #fffdfd;
+}
+
 .section-search__form-button {
     margin: 10px;
     padding: 0;
@@ -165,6 +170,7 @@
     .section-search__toggle-text {
         font-size: 11px;
     }
+
     .section-search__toggle {
         padding-bottom: 63px;
     }

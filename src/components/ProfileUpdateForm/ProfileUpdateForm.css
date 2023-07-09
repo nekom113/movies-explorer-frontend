@@ -72,7 +72,11 @@
     border: none;
     outline: none;
 }
-
+.section-profile-update__input-field:focus {
+    border: 1px solid rgba(192, 212, 248, 0.8);
+    border-radius: 4px;
+    color: #fffdfd;
+}
 .section-profile-update__buttons-container {
     margin: 221px auto 0;
     padding: 0;
