@@ -11,11 +11,13 @@ export default function Main() {
     return (
         <>
             <Header userSignin={false}/>
-            <Promo/>
-            <AboutProject/>
-            <Techs/>
-            <AboutMe/>
-            <Portfolio/>
+            <main>
+                <Promo/>
+                <AboutProject/>
+                <Techs/>
+                <AboutMe/>
+                <Portfolio/>
+            </main>
             <Footer/>
         </>
     )

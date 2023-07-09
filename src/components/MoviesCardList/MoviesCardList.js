@@ -1,7 +1,7 @@
 import './MoviesCardList.css'
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-export default function MoviesCardList({savedMovieBtnIsActive}) {
+export default function MoviesCardList({savedMovieBtnIsActive, btnElse}) {
     return (
         <section className='section-movie-cards'>
             <div className='section-movie-cards-list__block'>
@@ -9,33 +9,52 @@ export default function MoviesCardList({savedMovieBtnIsActive}) {
                     <>
                         <MoviesCard
                             savedMovieBtnIsActive={savedMovieBtnIsActive}
-                            movieName={"Беги Лола, беги"} movieDuration={'1ч 44м'}
+                            movieName={"33 слова о дизайне"} movieDuration={'1ч 47м'}
                             moviePoster={'https://avatars.dzeninfra.ru/get-zen_doc/1362956/pub_5cf7727e34ace300afb30624_5cf772abaff15000afe52d10/scale_1200'}/>
                         <MoviesCard
                             savedMovieBtnIsActive={savedMovieBtnIsActive}
-                            movieName={"Беги Лола, беги"}
-                            movieDuration={'1ч 44м'}
+                            movieName={"Киноальманах «100 лет дизайна»"}
+                            movieDuration={'1ч 47м'}
                             moviePoster={'https://avatars.dzeninfra.ru/get-zen_doc/1362956/pub_5cf7727e34ace300afb30624_5cf772abaff15000afe52d10/scale_1200'}/>
                         <MoviesCard
                             savedMovieBtnIsActive={savedMovieBtnIsActive}
-                            movieName={"Беги Лола, беги"}
-                            movieDuration={'1ч 44м'}
+                            movieName={"В погоне за Бенкси"}
+                            movieDuration={'1ч 47м'}
                             moviePoster={'https://avatars.dzeninfra.ru/get-zen_doc/1362956/pub_5cf7727e34ace300afb30624_5cf772abaff15000afe52d10/scale_1200'}/>
                     </> :
                     <>
-                        <MoviesCard movieName={"Беги Лола, беги"} movieDuration={'1ч 44м'}
+                        <MoviesCard movieName={"Соберись перед прыжком"} movieDuration={'1ч 10м'}
                                     moviePoster={'https://gorodprima.ru/wp-content/uploads/2020/10/kino1.jpg'}/>
-                        <MoviesCard movieName={"Беги Лола, беги"} movieDuration={'1ч 44м'}
+                        <MoviesCard movieName={"Пи Джей Харви: A dog called money"} movieDuration={'1ч 4м'}
                                     moviePoster={'https://gorodprima.ru/wp-content/uploads/2020/10/kino1.jpg'}/>
-                        <MoviesCard movieName={"Беги Лола, беги"} movieDuration={'1ч 44м'}
+                        <MoviesCard movieName={"По волнам: Искусство звука в кино"} movieDuration={'1ч 7м'}
                                     moviePoster={'https://w.forfun.com/fetch/08/08cda7cd58c2cd769af07cd2a33c5e2c.jpeg'}/>
+                        <MoviesCard movieName={"Соберись перед прыжком"} movieDuration={'1ч 10м'}
+                                    moviePoster={'https://gorodprima.ru/wp-content/uploads/2020/10/kino1.jpg'}/>
+                        <MoviesCard movieName={"Пи Джей Харви: A dog called money"} movieDuration={'1ч 4м'}
+                                    moviePoster={'https://gorodprima.ru/wp-content/uploads/2020/10/kino1.jpg'}/>
+                        <MoviesCard movieName={"По волнам: Искусство звука в кино"} movieDuration={'1ч 7м'}
+                                    moviePoster={'https://w.forfun.com/fetch/08/08cda7cd58c2cd769af07cd2a33c5e2c.jpeg'}/>
+                        <MoviesCard movieName={"Соберись перед прыжком"} movieDuration={'1ч 10м'}
+                                    moviePoster={'https://gorodprima.ru/wp-content/uploads/2020/10/kino1.jpg'}/>
+                        <MoviesCard movieName={"Пи Джей Харви: A dog called money"} movieDuration={'1ч 4м'}
+                                    moviePoster={'https://gorodprima.ru/wp-content/uploads/2020/10/kino1.jpg'}/>
+                        {/*<MoviesCard movieName={"По волнам: Искусство звука в кино"} movieDuration={'1ч 7м'}*/}
+                        {/*            moviePoster={'https://w.forfun.com/fetch/08/08cda7cd58c2cd769af07cd2a33c5e2c.jpeg'}/>*/}
+                        {/*<MoviesCard movieName={"Соберись перед прыжком"} movieDuration={'1ч 10м'}*/}
+                        {/*            moviePoster={'https://gorodprima.ru/wp-content/uploads/2020/10/kino1.jpg'}/>*/}
+                        {/*<MoviesCard movieName={"Пи Джей Харви: A dog called money"} movieDuration={'1ч 4м'}*/}
+                        {/*            moviePoster={'https://gorodprima.ru/wp-content/uploads/2020/10/kino1.jpg'}/>*/}
+                        {/*<MoviesCard movieName={"По волнам: Искусство звука в кино"} movieDuration={'1ч 7м'}*/}
+                        {/*            moviePoster={'https://w.forfun.com/fetch/08/08cda7cd58c2cd769af07cd2a33c5e2c.jpeg'}/>*/}
                     </>
 
                 }
             </div>
-
-            <button className='section-movie-cards__loading-btn' onClick={() => alert('Вы нажали кнопку "Ещё"')}>Ещё
-            </button>
+            {btnElse &&
+                <button className='section-movie-cards__loading-btn' onClick={() => alert('Вы нажали кнопку "Ещё"')}>Ещё
+                </button>
+            }
         </section>
     )
 }

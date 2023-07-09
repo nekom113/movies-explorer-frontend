@@ -19,10 +19,8 @@ export default function App() {
                     <Route path='/profile' element={<ProfileUpdateForm/>}/>
                     <Route path='/signin' element={<Login/>}/>
                     <Route path='/signup' element={<Register/>}/>
-                    <Route path='*'  element={<NotFound/>} />
+                    <Route path='*' element={<NotFound/>}/>
                 </Routes>
-            </div>
-            <div className='app__footer-block'>
             </div>
         </div>
     )

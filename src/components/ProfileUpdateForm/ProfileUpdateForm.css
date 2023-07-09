@@ -74,7 +74,7 @@
 }
 
 .section-profile-update__buttons-container {
-    margin: 207px auto 0;
+    margin: 221px auto 0;
     padding: 0;
     box-sizing: border-box;
     display: flex;
@@ -97,6 +97,10 @@
     line-height: normal;
 }
 
+.section-profile-update__submit-btn:hover {
+    opacity: .7;
+}
+
 .section-profile-update__exit-btn {
     margin: 16px 0 0 0;
     padding: 0;
@@ -110,6 +114,10 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+}
+
+.section-profile-update__exit-btn:hover {
+    opacity: .7;
 }
 
 @media (max-width: 830px) {

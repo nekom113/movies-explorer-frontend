@@ -5,13 +5,15 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
 export default function SavedMovies() {
-    const savedMovieBtnIsActive = true
     return (
-        <section className='section-saved-movies'>
+        <>
             <Header userSignin={true}/>
-            <SearchForm/>
-            <MoviesCardList savedMovieBtnIsActive={savedMovieBtnIsActive}/>
+            <main className='section-saved-movies'>
+                <SearchForm/>
+                <MoviesCardList savedMovieBtnIsActive={true} btnElse={false}/>
+            </main>
             <Footer/>
-        </section>
+        </>
+
     )
 }

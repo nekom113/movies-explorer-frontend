@@ -21,7 +21,7 @@ export default function RegLoginUserForm({isRegistrationForm}) {
         alert('Вы активировали отправку формы')
     }
     return (
-        <section className='reg-log-section'>
+        <main className='reg-log-section'>
             <div className='reg-log-section__header'>
                 <div className='reg-log-section__logo'><Logo/></div>
                 <h2 className='reg-log-section__title'>{formData.title}</h2>
@@ -90,7 +90,7 @@ export default function RegLoginUserForm({isRegistrationForm}) {
                 </div>
             </div>
 
-        </section>
+        </main>
 
     )
 }

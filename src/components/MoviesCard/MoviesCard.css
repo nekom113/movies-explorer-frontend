@@ -1,6 +1,6 @@
 .movie-card {
     box-sizing: border-box;
-    width: 364px;
+    width: 357px;;
     height: 281px;
     overflow: hidden;
     background-color: #222;
@@ -27,7 +27,7 @@
 
 .movie-card__title {
     margin: 0;
-    padding: 0;
+    padding: 0 24px 0 0;
     color: #FFF;
     font-size: 13px;
     font-style: normal;
@@ -80,7 +80,7 @@
 
 @media (max-width: 1279px) {
     .movie-card {
-        width: 29vw;
+        width: 25vw;
     }
 }
 
@@ -120,5 +120,19 @@
 
     .movie-card__title {
         font-size: 12px;
+    }
+
+    .movie-card__caption-block {
+        margin: 13px 6px;
+    }
+
+    .movie-card__btn-wrapper {
+        top: -9px;
+        right: -4px;
+    }
+
+    .movie-card__btn {
+        width: 11px;
+        height: 11px;
     }
 }
