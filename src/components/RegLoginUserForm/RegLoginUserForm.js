@@ -24,7 +24,7 @@ export default function RegLoginUserForm({isRegistrationForm}) {
         <main className='reg-log-section'>
             <div className='reg-log-section__header'>
                 <div className='reg-log-section__logo'><Logo/></div>
-                <h2 className='reg-log-section__title'>{formData.title}</h2>
+                <h1 className='reg-log-section__title'>{formData.title}</h1>
             </div>
 
             <form
@@ -82,8 +82,10 @@ export default function RegLoginUserForm({isRegistrationForm}) {
                 <span className="reg-log-section__error">{isRegistrationForm && 'что - то пошло не так'}</span>
             </form>
             <div className='reg-log-section__container'>
-                <button className='reg-log-section__button'
-                        onClick={() => alert(`Вы нажали на кнопку "${formData.button_name}"`)}>{formData.button_name}</button>
+                <button
+                    type='button'
+                    className='reg-log-section__button'
+                    onClick={() => alert(`Вы нажали на кнопку "${formData.button_name}"`)}>{formData.button_name}</button>
                 <div className='reg-log-section__link-block'>
                     <p className='reg-log-section__question'>{formData.question}</p>
                     <Link to={isRegistrationForm ? '/signin' : '/signup'}

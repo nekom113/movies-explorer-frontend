@@ -22,7 +22,8 @@ export default function MoviesCard({movieName, movieDuration, moviePoster, saved
                 {savedMovieBtnIsActive ? (
                         <div className='movie-card__btn-wrapper'
                              onClick={() => alert('Вы нажали кнопку удаления карточки')}>
-                            <div
+                            <button
+                                type='button'
                                 className='movie-card__btn movie-card__btn-delete'
                             />
                         </div>)

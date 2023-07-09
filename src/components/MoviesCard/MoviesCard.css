@@ -68,6 +68,8 @@
     cursor: pointer;
     width: 14px;
     height: 12px;
+    border: none;
+    background-color: transparent;
 }
 
 .movie-card__btn-delete {

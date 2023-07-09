@@ -134,6 +134,9 @@
     }
 
     .navigation__burger {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
         display: block;
         width: 44px;
         height: 44px;
@@ -154,6 +157,9 @@
     }
 
     .navigation__close-btn {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
         background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3crect x='7.16016' y='9.28249' width='3' height='22' transform='rotate(-45 7.16016 9.28249)' fill='white'/%3e%3crect x='22.7168' y='7.16117' width='3' height='22' transform='rotate(45 22.7168 7.16117)' fill='white'/%3e%3c/svg%3e ");
         position: absolute;
         right: 22px;

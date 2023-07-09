@@ -7,7 +7,7 @@ export default function Navigation() {
     const [burgerIsOpen, setBurgerToOpen] = useState(false)
 
     return (
-        <div className='navigation'>
+        <nav className='navigation'>
             <div className='navigation__links-list'>
                 <NavLink to='/movies' className='navigation__links-item'>
                     Фильмы
@@ -22,14 +22,20 @@ export default function Navigation() {
                     <span className='navigation__profile-icon'/>
                 </NavLink>
             </div>
-            <div className='navigation__burger' onClick={() => setBurgerToOpen(true)}/>
+            <button
+                type='button'
+                className='navigation__burger' onClick={() => {
+                setBurgerToOpen(true);
+            }}/>
             <div
                 className={`navigation__burger-menu `}
                 style={burgerIsOpen ? {display: 'block'} : {display: 'none'}}
 
             >
-                <div className='navigation__close-btn'
-                     onClick={() => setBurgerToOpen(false)}
+                <button
+                    type='button'
+                    className='navigation__close-btn'
+                    onClick={() => setBurgerToOpen(false)}
                 />
                 <aside className='navigation__burger-menu-links'>
                     <NavLink to='/' className='navigation__burger-menu-links-item'>
@@ -50,7 +56,7 @@ export default function Navigation() {
                     </NavLink>
                 </aside>
             </div>
-        </div>
+        </nav>
     )
 
 }
