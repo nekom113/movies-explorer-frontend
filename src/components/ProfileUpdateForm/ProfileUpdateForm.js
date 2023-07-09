@@ -1,13 +1,15 @@
 import Header from "../Header/Header";
+import {useNavigate} from "react-router-dom";
+import {useState} from "react";
+
 import ('./ProfileUpdateForm.css')
 
 export default function ProfileUpdateForm() {
     const userData = {name: "Александр", email: "alexander@alex.ru"}
+    const navigate = useNavigate();
+    const [isActiveModeInput, setActiveModeInput] = useState(false)
 
-    const handleSubmit = e => {
-        e.preventDefault()
-        alert('Вы активировали отправку формы')
-    }
+
     return (
         <>
             <Header userSignin={true}/>
@@ -16,7 +18,6 @@ export default function ProfileUpdateForm() {
                     <h2 className='section-profile-update__title'>{`Привет, ${userData.name}!`}</h2>
                     <form className='section-profile-update__form'
                           id="profile-update__form"
-                          onSubmit={handleSubmit}
                     >
                         <label className='section-profile-update__label'>
                             <span className='section-profile-update__name'>Имя</span>
@@ -28,7 +29,8 @@ export default function ProfileUpdateForm() {
                                 minLength={2}
                                 maxLength={30}
                                 required={true}
-                                placeholder="Имя"
+                                placeholder="Введите имя"
+                                disabled={!isActiveModeInput}
                             />
                         </label>
                         <span className='section-profile-update__hr'/>
@@ -41,24 +43,37 @@ export default function ProfileUpdateForm() {
                                 defaultValue={userData.email}
                                 minLength={2}
                                 required={true}
-                                placeholder="Email"
+                                placeholder="Введите email"
+                                disabled={!isActiveModeInput}
                             />
                         </label>
                     </form>
                 </div>
-
                 <div className='section-profile-update__buttons-container'>
-                    <button
-                        type="submit"
-                        form="profile-update__form"
-                        className="section-profile-update__submit-btn">
-                        Редактировать
-                    </button>
-                    <button
-                        className="section-profile-update__exit-btn"
-                        onClick={() => alert('Вы нажали кнопку выхода')}>
-                        Выйти из аккаунта
-                    </button>
+                    <span className='section-profile-update__error' style={{display:'none'}}>При обновлении профиля произошла ошибка.</span>
+
+                    {isActiveModeInput ?
+                        <button
+                            className='section-profile-update__submit-btn'
+                            onClick={() => setActiveModeInput(false)}
+                        >
+                            Сохранить
+                        </button>
+                        :
+                        <>
+                            <button
+                                className="section-profile-update__edit-btn "
+                                onClick={() => setActiveModeInput(true)}
+                            >
+                                Редактировать
+                            </button>
+                            <button
+                                className="section-profile-update__exit-btn"
+                                onClick={() => navigate("/signin", {replace: true})}>
+                                Выйти из аккаунта
+                            </button>
+                        </>
+                    }
                 </div>
             </main>
         </>

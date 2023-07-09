@@ -45,6 +45,11 @@
     line-height: normal;
 }
 
+.movie-card__trailer-link {
+    display: block;
+    cursor: pointer;
+}
+
 .movie-card__btn-wrapper {
     display: flex;
     justify-content: center;

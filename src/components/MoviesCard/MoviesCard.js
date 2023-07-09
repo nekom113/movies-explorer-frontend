@@ -1,12 +1,19 @@
 import './MoviesCard.css'
 import React, {useState} from "react";
 
-export default function MoviesCard({movieName, movieDuration, moviePoster, savedMovieBtnIsActive}) {
+export default function MoviesCard({movieName, movieDuration, moviePoster, savedMovieBtnIsActive, linkToMovie}) {
     const [isActive, setActive] = useState(true)
     return (
         <div className='movie-card'>
-            <img className='movie-card__img' src={moviePoster}
-                 alt='В погоде за Бенкси'/>
+            <a
+                className="movie-card__trailer-link"
+                href={linkToMovie}
+                target="_blank"
+                rel="noreferrer"
+            >
+                <img className='movie-card__img' src={moviePoster}
+                     alt='В погоде за Бенкси'/>
+            </a>
             <div className='movie-card__caption-block'>
                 <div className='movie-card__text-wrapper'>
                     <h2 className='movie-card__title'>{movieName}</h2>
