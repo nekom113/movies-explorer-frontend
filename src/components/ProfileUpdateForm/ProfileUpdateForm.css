@@ -178,11 +178,16 @@
     .section-profile-update__form {
         margin: 96px auto 0;
     }
+    .section-profile-update__submit-btn{
+        width: 360px;
+    }
 }
 
 @media (max-width: 460px) {
 
-
+.section-profile-update__submit-btn{
+    width: 260px;
+}
     .section-profile-update__edit-btn, .section-profile-update__exit-btn {
         font-size: 12px;
     }

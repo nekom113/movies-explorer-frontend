@@ -1,7 +1,7 @@
 .movie-card {
     box-sizing: border-box;
-    width: 357px;;
-    height: 281px;
+    width: 357px;
+    min-height: 281px;
     overflow: hidden;
     background-color: #222;
     border-radius: 6px;
