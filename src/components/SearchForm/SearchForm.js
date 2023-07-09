@@ -8,6 +8,7 @@ export default function SearchForm() {
                     <input
                         className="section-search__form-input"
                         placeholder="Фильм"
+                        required={true}
                     />
                     <input
                         type="submit"

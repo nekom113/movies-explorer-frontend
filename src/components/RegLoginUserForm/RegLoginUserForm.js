@@ -37,7 +37,8 @@ export default function RegLoginUserForm({isRegistrationForm}) {
                         <label className='reg-log-section__label'>
                             <span className='reg-log-section__name'>Имя</span>
                             <input
-                                type="text"
+                                placeholder='Введите имя'
+                                type='text'
                                 name='user-name'
                                 className='reg-log-section__input-field'
                                 minLength={2}
@@ -54,6 +55,7 @@ export default function RegLoginUserForm({isRegistrationForm}) {
                 <label className='reg-log-section__label'>
                     <span className='reg-log-section__name'>E-mail</span>
                     <input
+                        placeholder='Введите E-mail'
                         type="text"
                         name='registration-email'
                         className='reg-log-section__input-field'
@@ -68,6 +70,7 @@ export default function RegLoginUserForm({isRegistrationForm}) {
                     <span className='reg-log-section__name'>Пароль</span>
                     <input
                         type="password"
+                        placeholder='Введите пароль'
                         name='registration-password'
                         className='reg-log-section__input-field reg-log-section__input-field-error'
                         minLength={2}
