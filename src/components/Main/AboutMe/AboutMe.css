@@ -134,9 +134,6 @@
         margin-top: 40px;
     }
 }
-.about-me-section {
-    padding: 44px 30px 0;
-}
 
 @media (max-width: 490px) {
     .about-me-section {
