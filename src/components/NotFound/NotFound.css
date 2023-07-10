@@ -42,7 +42,9 @@
     font-weight: 400;
     line-height: normal;
 }
-
+.section-not-found-back-step-btn:hover{
+    opacity: .7;
+}
 @media (max-width: 460px) {
     .section-not-found-title {
         font-size: 80px;

@@ -138,6 +138,9 @@
     cursor: pointer;
     transition: opacity .3s ease-out;
 }
+.reg-log-section__btn:hover{
+    opacity: .7;
+}
 
 @media (max-width: 830px) {
     .reg-log-section {
