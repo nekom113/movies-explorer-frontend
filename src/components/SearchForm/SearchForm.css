@@ -147,7 +147,7 @@
     }
 
     .section-search__container {
-        height: 55px;
+        min-height: 55px;
     }
 
     .section-search__form-input {

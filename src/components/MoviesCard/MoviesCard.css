@@ -98,7 +98,7 @@
 @media (max-width: 790px) {
     .movie-card {
         width: 44vw;
-        height: 262px;
+        min-height: 262px;
     }
 
     .movie-card__img {
@@ -113,7 +113,7 @@
 @media (max-width: 460px) {
     .movie-card {
         width: 88.75vw;
-        height: 237px;
+        min-height: 237px;
     }
 
     .movie-card__img {
