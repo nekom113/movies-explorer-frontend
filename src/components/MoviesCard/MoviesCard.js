@@ -12,7 +12,7 @@ export default function MoviesCard({movieName, movieDuration, moviePoster, saved
                 rel="noreferrer"
             >
                 <img className='movie-card__img' src={moviePoster}
-                     alt='В погоде за Бенкси'/>
+                     alt={`Poster for ${movieName}`}/>
             </a>
             <div className='movie-card__caption-block'>
                 <div className='movie-card__text-wrapper'>
