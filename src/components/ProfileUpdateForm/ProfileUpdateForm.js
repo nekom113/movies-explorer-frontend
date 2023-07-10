@@ -73,7 +73,7 @@ export default function ProfileUpdateForm() {
                                 <button
                                     type='button'
                                     className="section-profile-update__exit-btn"
-                                    onClick={() => navigate("/signin", {replace: true})}>
+                                    onClick={() => navigate("/", {replace: true})}>
                                     Выйти из аккаунта
                                 </button>
                             </>

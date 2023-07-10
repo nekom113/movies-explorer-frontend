@@ -17,17 +17,20 @@
     text-align: right;
     font-size: 14px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 18px;
     transition: opacity .3s ease-out;
-    border-bottom: 2px solid transparent;
+
 
 }
 
 .navigation__links-item:hover {
     cursor: pointer;
-    border-bottom: 2px solid #FFF;
     opacity: .6;
+}
+
+.navigation .active {
+    font-weight: 500;
 }
 
 .navigation__links-block-profile {
@@ -35,21 +38,9 @@
     display: flex;
     gap: 7px;
     transition: opacity .3s ease-out;
-    text-decoration: none;
     align-items: center;
 }
 
-.navigation__burger-menu-links-profile {
-    padding: 0;
-    margin: 0;
-    margin-block-start: 0;
-    margin-block-end: 0;
-    color: #FFF;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 12px;
-}
 
 .navigation__links-profile {
     margin: 0;
@@ -59,14 +50,11 @@
     text-align: right;
     font-size: 14px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 18px;
     border-bottom: 2px solid transparent;
+}
 
-}
-.navigation__links-profile:hover{
-    border-bottom: 2px solid #FFF;
-}
 .navigation__links-block-profile:hover {
     cursor: pointer;
     opacity: .6;
@@ -82,18 +70,32 @@
     background-position: center;
     background-repeat: no-repeat;
 }
+.navigation__burger-menu-links-block-profile::before{
+    margin-right: 2px;
+    display: block;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='26' height='26' viewBox='0 0 26 26' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='26' height='26' rx='13' fill='%23313131'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M14.4296 14.9678C15.7914 14.4057 16.7499 13.0648 16.7499 11.5C16.7499 9.42893 15.0709 7.75 12.9999 7.75C10.9288 7.75 9.24986 9.42893 9.24986 11.5C9.24986 13.0647 10.2082 14.4056 11.57 14.9677C10.1753 15.1999 8.89238 15.7659 7.80811 16.5806L9.18966 18.4194C10.2509 17.6221 11.5685 17.15 12.9996 17.15C14.4307 17.15 15.7483 17.6221 16.8096 18.4194L18.1911 16.5806C17.1069 15.766 15.8241 15.2 14.4296 14.9678Z' fill='white'/%3e%3c/svg%3e ");
+    width: 26px;
+    height: 26px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
 .navigation__burger {
     display: none;
 }
-.navigation__burger:hover{
+
+.navigation__burger:hover {
     opacity: .7;
     transform: scale(1.05);
 }
+
 .navigation__burger-menu {
     display: none;
 }
-
+.navigation__burger-menu .active {
+    border-bottom: 2px solid #FFF;
+}
 
 .navigation__burger-menu-links {
     margin-top: 159px;
@@ -103,7 +105,7 @@
     align-items: center;
     justify-content: center;
     list-style: none;
-    padding: 0
+    padding: 0;
 
 }
 
@@ -111,18 +113,19 @@
     text-decoration: none;
     color: #FFF;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     text-align: center;
     font-size: 18px;
     line-height: normal;
     border-bottom: 2px solid transparent;
 
 }
+
 .navigation__burger-menu-links-item:hover {
     cursor: pointer;
-    border-bottom: 2px solid #FFF;
     opacity: .6;
 }
+
 .navigation__burger-menu-links-block-profile {
     text-decoration: none;
     margin-top: 58vh;
@@ -131,11 +134,14 @@
     gap: 7px;
     transition: opacity .4s ease;
     cursor: pointer;
+    color: #FFF;
 
 }
-.navigation__burger-menu-links-block-profile:hover{
+
+.navigation__burger-menu-links-block-profile:hover {
     opacity: .7;
 }
+
 @media (max-width: 790px) {
     .navigation__links-list {
         display: none;
@@ -180,6 +186,7 @@
         transition: opacity .4s ease;
 
     }
+
     .navigation__close-btn:hover {
         opacity: .7;
     }
@@ -198,6 +205,14 @@
 
     .navigation__burger-menu-links-block-profile {
         margin-top: 54vh;
+        padding: 0;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        color: #FFF;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 12px;
     }
 
     .navigation__close-btn {

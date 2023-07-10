@@ -7,31 +7,33 @@ export default function Navigation() {
     const [burgerIsOpen, setBurgerToOpen] = useState(false)
 
     return (
-        <nav className='navigation'>
-            <div className='navigation__links-list'>
-                <NavLink to='/movies' className='navigation__links-item'>
-                    Фильмы
-                </NavLink>
-                <NavLink to='/saved-movies' className='navigation__links-item'>
-                    Сохранённые фильмы
-                </NavLink>
-                <NavLink to='/profile' className='navigation__links-block-profile'>
-                    <p className='navigation__links-profile'>
-                        Аккаунт
-                    </p>
-                    <span className='navigation__profile-icon'/>
-                </NavLink>
-            </div>
-            <button
-                type='button'
-                className='navigation__burger' onClick={() => {
-                setBurgerToOpen(true);
-            }}/>
-            <div
+        <>
+            <nav className='navigation'>
+                <div className='navigation__links-list'>
+                    <NavLink to='/movies' className='navigation__links-item'>
+                        Фильмы
+                    </NavLink>
+                    <NavLink to='/saved-movies' className='navigation__links-item'>
+                        Сохранённые фильмы
+                    </NavLink>
+                    <NavLink to='/profile' className='navigation__links-profile navigation__links-block-profile'>
+                            Аккаунт
+                        <span className='navigation__profile-icon'/>
+                    </NavLink>
+                </div>
+                <button
+                    type='button'
+                    className='navigation__burger' onClick={() => {
+                    setBurgerToOpen(true);
+                }}/>
+            </nav>
+
+            <nav
                 className={`navigation__burger-menu `}
                 style={burgerIsOpen ? {display: 'block'} : {display: 'none'}}
 
             >
+
                 <button
                     type='button'
                     className='navigation__close-btn'
@@ -49,14 +51,13 @@ export default function Navigation() {
                         фильмы
                     </NavLink>
                     <NavLink to='/profile' className='navigation__burger-menu-links-block-profile'>
-                        <p className='navigation__burger-menu-links-profile'>
                             Аккаунт
-                        </p>
                         <span className='navigation__profile-icon'/>
                     </NavLink>
                 </aside>
-            </div>
-        </nav>
+            </nav>
+        </>
+
     )
 
 }
