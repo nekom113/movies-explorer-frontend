@@ -1,8 +1,12 @@
 
 .reg-log-section {
+    box-sizing: border-box;
+    margin: 0 auto;
     width: 396px;
-    margin-top: 70px;
-    position: relative;
+    min-height: 100vh;
+    padding-top: 72px;
+    display: flex;
+    flex-direction: column;
 }
 
 .reg-log-section__title {
@@ -17,6 +21,7 @@
 
 .reg-log-section__form {
     margin: 40px 0 0 0;
+    flex-basis: 333px;
 }
 
 .reg-log-section__label {
@@ -106,13 +111,6 @@
     margin-top: 15px;
 }
 
-.reg-log-section__container {
-    position: absolute;
-    top: 482px;
-    left: 0;
-    right: 0;
-}
-
 .reg-log-section__question {
     margin: 0;
     padding: 0;
@@ -138,20 +136,22 @@
     cursor: pointer;
     transition: opacity .3s ease-out;
 }
-.reg-log-section__btn:hover{
+
+.reg-log-section__btn:hover {
     opacity: .7;
 }
 
 @media (max-width: 830px) {
     .reg-log-section {
-        margin-top: 232px;
+        margin-top: 161px;
     }
 }
 
 @media (max-width: 460px) {
     .reg-log-section {
-        margin-top: 57px;
+        padding-top: 57px;
         width: 260px;
+        margin-top: 0;
 
     }
 
@@ -162,6 +162,7 @@
     .reg-log-section__form {
         margin-top: 0;
         padding-top: 80px;
+        flex-basis: 265px;
     }
 
     .reg-log-section__label {
