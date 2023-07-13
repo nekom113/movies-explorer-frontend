@@ -92,7 +92,7 @@
 
 @media (max-width: 490px) {
     .portfolio-section {
-        padding: 71px 14px 0;
+        padding: 71px 14px 3px;
     }
 
     .portfolio-section__title {
@@ -100,16 +100,13 @@
     }
 
     .portfolio-section__links-list {
-        padding-top: 17px;
+        padding-top: 18px;
     }
 
     .portfolio-section__link {
         font-size: 18px;
+        padding: 10px 0 8px;
         letter-spacing: -0.72px;
-    }
-
-    .portfolio-section__link {
-        padding: 10px 0;
     }
 
     .portfolio-section__link::before {

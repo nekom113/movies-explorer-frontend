@@ -1,6 +1,6 @@
 .movie-card {
     box-sizing: border-box;
-    width: 357px;
+    width: 363px;
     min-height: 281px;
     overflow: hidden;
     background-color: #222;
@@ -19,7 +19,7 @@
 }
 
 .movie-card__caption-block {
-    margin: 14px 16px;
+    margin: 13px 16px;
     display: flex;
     justify-content: space-between;
     position: relative;
@@ -36,7 +36,7 @@
 }
 
 .movie-card__subtitle {
-    margin: 17px 0 0 0;
+    margin: 16px 0 0 0;
     padding: 0;
     color: #8B8B8B;
     font-size: 11px;
@@ -59,24 +59,28 @@
     top: -8px;
     right: 0;
     position: absolute;
+    cursor: pointer;
 }
 
 .movie-card__btn {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    cursor: pointer;
     height: 12px;
+    width: 14px;
     border: none;
     background-color: transparent;
     transition: opacity .4s ease;
 
 }
-.movie-card__btn:hover{
+
+.movie-card__btn:hover {
     opacity: .7;
 }
+
 .movie-card__btn-delete {
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='8' height='8' viewBox='0 0 8 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M5.06029 3.8822L7.29955 1.64294L6.23889 0.582275L3.99962 2.82154L1.76048 0.582391L0.699821 1.64305L2.93896 3.8822L0.582031 6.23913L1.64269 7.29979L3.99963 4.94286L6.35667 7.29991L7.41734 6.23925L5.06029 3.8822Z' fill='white'/%3e%3c/svg%3e ");
+    height: 7px;
 
 }
 
@@ -105,14 +109,14 @@
     }
 
     .movie-card__caption-block {
-        margin: 12px;
+        margin: 13px 12px;
     }
-    .movie-card__btn {
-        height: 9px;
-    }
+
     .movie-card__btn-wrapper {
-        top: -6px;
+        top: -4px;
+        right: 2px;
     }
+
 }
 
 @media (max-width: 460px) {
@@ -143,12 +147,7 @@
     }
 
     .movie-card__btn-wrapper {
-        top: -9px;
+        top: -6px;
         right: -4px;
-    }
-
-    .movie-card__btn {
-        width: 11px;
-        height: 11px;
     }
 }

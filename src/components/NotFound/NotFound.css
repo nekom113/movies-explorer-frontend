@@ -1,4 +1,5 @@
 .section-not-found {
+    box-sizing: border-box;
     margin: 0 auto;
     padding: 250px 0 0 0;
     display: flex;
@@ -44,6 +45,11 @@
 }
 .section-not-found-back-step-btn:hover{
     opacity: .7;
+}
+@media (max-width: 830px) {
+    .section-not-found {
+    padding-top: 408px;
+    }
 }
 @media (max-width: 460px) {
     .section-not-found-title {

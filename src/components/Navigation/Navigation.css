@@ -136,7 +136,7 @@
     align-items: center;
     list-style: none;
     background-color: #202020;
-    width: 65.7vw;
+    width: 67vw;
     height: 100vh;
     position: absolute;
     right: 0;
@@ -192,8 +192,9 @@
         background-repeat: no-repeat;
         background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='44' height='44' viewBox='0 0 44 44' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M36 14L8 14V11L36 11V14Z' fill='white'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M36 24L8 24V21L36 21V24Z' fill='white'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M36 34L8 34V31L36 31V34Z' fill='white'/%3e%3c/svg%3e ");
     }
-
-
+    .navigation__burger-menu-links {
+        gap: 25px;
+    }
 }
 
 
@@ -204,13 +205,13 @@
 
     .navigation__burger-menu-links {
         padding-top: 145px;
-        gap: 25px;
+        gap: 22px;
         width: 100%;
     }
 
     .navigation__burger-menu-links-block-profile {
         margin: 0;
-        padding: 417px 0 0 0;
+        padding: 422px 0 0 0;
         margin-block-start: 0;
         margin-block-end: 0;
         color: #FFF;

@@ -4,6 +4,7 @@
 }
 
 .section-search__container {
+    box-sizing: border-box;
     margin: 0 auto;
     width: 100%;
     border: 1.5px solid #AAA;
@@ -148,6 +149,7 @@
 
     .section-search__container {
         min-height: 55px;
+        margin-top: 3px;
     }
 
     .section-search__form-input {
@@ -158,7 +160,7 @@
     }
 
     .section-search__form-button {
-        margin: 8px;
+        margin: 6px;
         width: 120px;
         height: 44px;
     }

@@ -15,6 +15,7 @@
 
 
 .header__signup-button {
+    padding: 0;
     color: #FFFFFF;
     opacity: 1;
     font-size: 12px;
@@ -64,7 +65,7 @@
 
 
     .header__links {
-        gap: 14px;
+        gap: 24px;
     }
 
 }
@@ -72,6 +73,9 @@
 @media (max-width: 460px) {
     .header {
         margin: 0 14px;
+    }
+    .header__links {
+        gap: 14px;
     }
 
     .header__signin-button {
