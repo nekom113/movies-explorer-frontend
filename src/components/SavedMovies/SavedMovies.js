@@ -4,10 +4,10 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
-export default function SavedMovies() {
+export default function SavedMovies({loggedIn}) {
     return (
         <>
-            <Header userSignin={true}/>
+            <Header loggedIn={loggedIn}/>
             <main className='section-saved-movies'>
                 <SearchForm/>
                 <MoviesCardList savedMovieBtnIsActive={true} btnElse={false}/>

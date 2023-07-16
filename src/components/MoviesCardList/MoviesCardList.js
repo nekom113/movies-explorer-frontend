@@ -1,7 +1,12 @@
 import './MoviesCardList.css'
 import MoviesCard from "../MoviesCard/MoviesCard";
+import {MOVIE_BASE_URL} from "../../utils/utils";
 
-export default function MoviesCardList({savedMovieBtnIsActive, btnElse}) {
+export default function MoviesCardList({savedMovieBtnIsActive, btnElse, moviesList}) {
+    let checkedMoviesList = moviesList
+    if (!Array.isArray(moviesList)) {
+        return checkedMoviesList = []
+    }
     return (
         <section className='section-movie-cards'>
             <div className='section-movie-cards-list__block'>
@@ -9,7 +14,8 @@ export default function MoviesCardList({savedMovieBtnIsActive, btnElse}) {
                     <>
                         <MoviesCard
                             savedMovieBtnIsActive={savedMovieBtnIsActive}
-                            movieName={"33 слова о дизайне"} movieDuration={'1ч 47м'}
+                            movieName={"33 слова о дизайне"}
+                            movieDuration={'1ч 47м'}
                             linkToMovie={'https://www.youtube.com/watch?v=5ovzC93EneA'}
                             moviePoster={'https://avatars.dzeninfra.ru/get-zen_doc/1362956/pub_5cf7727e34ace300afb30624_5cf772abaff15000afe52d10/scale_1200'}
                         />
@@ -26,44 +32,13 @@ export default function MoviesCardList({savedMovieBtnIsActive, btnElse}) {
                             moviePoster={'https://avatars.dzeninfra.ru/get-zen_doc/1362956/pub_5cf7727e34ace300afb30624_5cf772abaff15000afe52d10/scale_1200'}
                             linkToMovie={'https://www.youtube.com/watch?v=g85ErgcyqX8'}/>
                     </> :
-                    <>
-                        <MoviesCard movieName={"Соберись перед прыжком"} movieDuration={'1ч 10м'}
-                                    moviePoster={'https://gorodprima.ru/wp-content/uploads/2020/10/kino1.jpg'}
-                                    linkToMovie={'https://www.youtube.com/watch?v=g85ErgcyqX8'}/>
-                        <MoviesCard movieName={"Пи Джей Харви: A dog called money"} movieDuration={'1ч 4м'}
-                                    linkToMovie={'https://www.youtube.com/watch?v=g85ErgcyqX8'}
-                                    moviePoster={'https://gorodprima.ru/wp-content/uploads/2020/10/kino1.jpg'}/>
-                        <MoviesCard movieName={"По волнам: Искусство звука в кино"} movieDuration={'1ч 7м'}
-                                    moviePoster={'https://w.forfun.com/fetch/08/08cda7cd58c2cd769af07cd2a33c5e2c.jpeg'}
-                                    linkToMovie={'https://www.youtube.com/watch?v=g85ErgcyqX8'}/>
-                        <MoviesCard movieName={"Соберись перед прыжком"} movieDuration={'1ч 10м'}
-                                    moviePoster={'https://gorodprima.ru/wp-content/uploads/2020/10/kino1.jpg'}
-                                    linkToMovie={'https://www.youtube.com/watch?v=g85ErgcyqX8'}/>
-                        <MoviesCard movieName={"Пи Джей Харви: A dog called money"} movieDuration={'1ч 4м'}
-                                    moviePoster={'https://gorodprima.ru/wp-content/uploads/2020/10/kino1.jpg'}
-                                    linkToMovie={'https://www.youtube.com/watch?v=g85ErgcyqX8'}/>
-                        <MoviesCard movieName={"По волнам: Искусство звука в кино"} movieDuration={'1ч 7м'}
-                                    moviePoster={'https://w.forfun.com/fetch/08/08cda7cd58c2cd769af07cd2a33c5e2c.jpeg'}
-                                    linkToMovie={'https://www.youtube.com/watch?v=g85ErgcyqX8'}/>
-                        <MoviesCard movieName={"Соберись перед прыжком"} movieDuration={'1ч 10м'}
-                                    moviePoster={'https://gorodprima.ru/wp-content/uploads/2020/10/kino1.jpg'}
-                                    linkToMovie={'https://www.youtube.com/watch?v=g85ErgcyqX8'}/>
-                        <MoviesCard movieName={"Пи Джей Харви: A dog called money"} movieDuration={'1ч 4м'}
-                                    moviePoster={'https://gorodprima.ru/wp-content/uploads/2020/10/kino1.jpg'}
-                                    linkToMovie={'https://www.youtube.com/watch?v=g85ErgcyqX8'}/>
-                        <MoviesCard movieName={"Пи Джей Харви: A dog called money"} movieDuration={'1ч 4м'}
-                                    moviePoster={'https://gorodprima.ru/wp-content/uploads/2020/10/kino1.jpg'}
-                                    linkToMovie={'https://www.youtube.com/watch?v=g85ErgcyqX8'}/>
-                        <MoviesCard movieName={"По волнам: Искусство звука в кино"} movieDuration={'1ч 7м'}
-                                    moviePoster={'https://w.forfun.com/fetch/08/08cda7cd58c2cd769af07cd2a33c5e2c.jpeg'}
-                                    linkToMovie={'https://www.youtube.com/watch?v=g85ErgcyqX8'}/>
-                        <MoviesCard movieName={"Соберись перед прыжком"} movieDuration={'1ч 10м'}
-                                    moviePoster={'https://gorodprima.ru/wp-content/uploads/2020/10/kino1.jpg'}
-                                    linkToMovie={'https://www.youtube.com/watch?v=g85ErgcyqX8'}/>
-                        <MoviesCard movieName={"Пи Джей Харви: A dog called money"} movieDuration={'1ч 4м'}
-                                    moviePoster={'https://gorodprima.ru/wp-content/uploads/2020/10/kino1.jpg'}
-                                    linkToMovie={'https://www.youtube.com/watch?v=g85ErgcyqX8'}/>
-                    </>
+                    checkedMoviesList.map(movie => {
+                        return (<MoviesCard key={movie.id} movieName={movie.nameRU}
+                                            movieDuration={movie.duration}
+                                            moviePoster={`${MOVIE_BASE_URL}/${movie.image.url}`}
+                                            linkToMovie={movie.trailerLink}/>)
+                    })
+
 
                 }
             </div>

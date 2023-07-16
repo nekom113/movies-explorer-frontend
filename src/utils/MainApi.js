@@ -49,6 +49,32 @@ class MainApi {
             .then(this._checkResponse)
     }
 
+    getProfileData(token) {
+        return fetch(`${this._baseUrl}/users/me`, {
+            headers: {
+                authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(this._checkResponse)
+    }
+    setProfileInfo(userData, token) {
+        console.log({userData})
+        const { name, email } = userData
+        return fetch(`${this._baseUrl}/users/me`, {
+            method: 'PATCH',
+            headers: {
+                authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name,
+                email
+            })
+        })
+            .then(this._checkResponse)
+    }
+
 }
 
 const authSetting = {

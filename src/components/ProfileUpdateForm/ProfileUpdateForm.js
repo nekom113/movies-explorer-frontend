@@ -1,25 +1,33 @@
 import Header from "../Header/Header";
 import {useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {useContext, useState} from "react";
+import {CurrentUserContext} from "../../context/CurrentUserContext";
+import mainApi from "../../utils/MainApi";
+import {getJWTByLocalStorage} from "../../utils/utils";
+
 
 import ('./ProfileUpdateForm.css')
 
-export default function ProfileUpdateForm() {
-    const userData = {name: "Александр", email: "alexander@alex.ru"}
+export default function ProfileUpdateForm({loggedIn, setLoggedIn}) {
+    const token = getJWTByLocalStorage()
     const navigate = useNavigate();
+    const {currentUser, setCurrentUser} = useContext(CurrentUserContext)
     const [isActiveModeInput, setActiveModeInput] = useState(false)
 
-
+    const handleSubmitUpdateUserData = (e) => {
+        e.preventDefault()
+        mainApi.setProfileInfo(currentUser, token).then(data => setCurrentUser(data))
+        setActiveModeInput(false)
+    }
     return (
         <>
-            <Header userSignin={true}/>
+            <Header loggedIn={loggedIn}/>
             <main className='section-profile-update'>
-                <h1 className='section-profile-update__title'>{`Привет, ${userData.name}!`}</h1>
+                <h1 className='section-profile-update__title'>{`Привет, ${currentUser.name}!`}</h1>
 
                 <form className='section-profile-update__form'
                       id="profile-update__form"
                 >
-                    {/*<div className='section-profile-update__main-container'>*/}
 
                     <label className='section-profile-update__label'>
                         <span className='section-profile-update__name'>Имя</span>
@@ -27,7 +35,8 @@ export default function ProfileUpdateForm() {
                             type="text"
                             name='profile-update__name'
                             className='section-profile-update__input-field'
-                            defaultValue={userData.name}
+                            onChange={(e) => setCurrentUser({...currentUser, name: e.target.value})}
+                            value={currentUser.name}
                             minLength={2}
                             maxLength={30}
                             required={true}
@@ -42,14 +51,14 @@ export default function ProfileUpdateForm() {
                             type="text"
                             name='profile-update__name'
                             className='section-profile-update__input-field'
-                            defaultValue={userData.email}
+                            value={currentUser.email}
+                            onChange={(e) => setCurrentUser({...currentUser, email: e.target.value})}
                             minLength={2}
                             required={true}
                             placeholder="Введите email"
                             disabled={!isActiveModeInput}
                         />
                     </label>
-                    {/*</div>*/}
                     <div className='section-profile-update__buttons-container'>
                         <span className='section-profile-update__error' style={{display: 'none'}}>При обновлении профиля произошла ошибка.</span>
 
@@ -57,7 +66,7 @@ export default function ProfileUpdateForm() {
                             <button
                                 type='button'
                                 className='section-profile-update__submit-btn'
-                                onClick={() => setActiveModeInput(false)}
+                                onClick={e => handleSubmitUpdateUserData(e)}
                             >
                                 Сохранить
                             </button>
@@ -73,7 +82,12 @@ export default function ProfileUpdateForm() {
                                 <button
                                     type='button'
                                     className="section-profile-update__exit-btn"
-                                    onClick={() => navigate("/", {replace: true})}>
+                                    onClick={() => {
+                                        setLoggedIn(false);
+                                        setCurrentUser(null);
+                                        localStorage.clear();
+                                        navigate("/", {replace: true})
+                                    }}>
                                     Выйти из аккаунта
                                 </button>
                             </>

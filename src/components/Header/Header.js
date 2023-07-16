@@ -4,18 +4,18 @@ import Logo from "../Logo/Logo";
 import Navigation from "../Navigation/Navigation";
 
 
-export default function Header({userSignin}) {
+export default function Header({loggedIn}) {
     const navigate = useNavigate();
 
     return (
         <header className='header'>
             <Logo/>
-            {userSignin ?
+            {loggedIn ?
                 <Navigation/>
                 :
                 <nav className="header__links ">
                     <button type="button"
-                            onClick={() => navigate("/signin")}
+                            onClick={() => navigate("/signup")}
                             className="header__signup-button"
                     >
                         Регистрация

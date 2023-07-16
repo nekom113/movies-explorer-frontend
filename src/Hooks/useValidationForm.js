@@ -1,4 +1,5 @@
 import {useCallback, useState} from "react";
+import {logDOM} from "@testing-library/react";
 
 export default function useValidationForm() {
     const [inputValue, setInputValue] = useState({});
@@ -6,17 +7,17 @@ export default function useValidationForm() {
     const [validationStatus, setValidationStatus] = useState(false);
     const [currentNameInput, setCurrentNameInput] = useState('');
 
-    const handleChangeForm = ({target}) => {
-        const {name, value, validationMessage, closest} = target;
+    const handleChangeForm = (target) => {
+        const {name, value} = target;
         setInputValue({
             ...inputValue,
             [name]: value
         });
         setInputErrors({
             ...inputError,
-            [name]: validationMessage
+            [name]: target.validationMessage
         });
-        setValidationStatus(closest('form').checkValidity());
+        // setValidationStatus(target.closest("form").checkValidity());
         setCurrentNameInput(name)
     }
     const resetForm = useCallback(() => {
