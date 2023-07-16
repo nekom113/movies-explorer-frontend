@@ -1,0 +1,98 @@
+.popup {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s linear;
+}
+
+.popup_opened {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup__container {
+    max-width: 430px;
+    background-color: white;
+    border-radius: 10px;
+    position: relative;
+    box-sizing: border-box;
+    padding: 34px 36px 30px;
+}
+
+
+
+.popup__close-icon {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    border: none;
+    top: -40px;
+    right: -40px;
+    width: 32px;
+    height: 32px;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M20 18L12 10L20 2L18 0L10 8L2 0L0 2L8 10L0 18L2 20L10 12L18 20L20 18Z' fill='white'/%3e%3c/svg%3e");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+.popup__close-icon:hover {
+    cursor: pointer;
+    opacity: .6;
+    transition: opacity .5s ease;
+}
+
+.popup__tooltip-icon_success {
+    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='120' height='120' viewBox='0 0 120 120' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M117 60C117 91.4802 91.4802 117 60 117C28.5198 117 3 91.4802 3 60C3 28.5198 28.5198 3 60 3C91.4802 3 117 28.5198 117 60ZM120 60C120 93.1371 93.1371 120 60 120C26.8629 120 0 93.1371 0 60C0 26.8629 26.8629 0 60 0C93.1371 0 120 26.8629 120 60ZM57.5502 76.888L86.7676 48.888L81.2324 43.112L54.4277 68.7999L39.3496 57.8561L34.6504 64.3305L52.433 77.2372L55.1375 79.2001L57.5502 76.888Z' fill='black'/%3e%3c/svg%3e");
+}
+
+.popup__tooltip-icon_fail {
+    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='120' height='120' viewBox='0 0 120 120' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M117 60C117 91.4802 91.4802 117 60 117C28.5198 117 3 91.4802 3 60C3 28.5198 28.5198 3 60 3C91.4802 3 117 28.5198 117 60ZM120 60C120 93.1371 93.1371 120 60 120C26.8629 120 0 93.1371 0 60C0 26.8629 26.8629 0 60 0C93.1371 0 120 26.8629 120 60ZM77.6777 83.3345L60.7071 66.3639L43.0294 84.0416L37.3726 78.3848L55.0503 60.707L36.6655 42.3223L42.3224 36.6654L60.7071 55.0502L78.3848 37.3726L84.0416 43.0294L66.364 60.707L83.3346 77.6776L77.6777 83.3345Z' fill='%23FD0707'/%3e%3c/svg%3e");
+}
+
+.popup__tooltip-text {
+    margin: 40px 0 0 0;
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 900;
+}
+
+@media (min-width: 768px) {
+    .popup__tooltip-text {
+        margin-top: 32px;
+        font-size: 24px;
+        line-height: 29px;
+        font-family: inherit;
+    }
+}
+
+@media (max-width: 620px) {
+    .popup__container {
+        padding: 25px 22px;
+        max-width: 282px;
+    }
+
+    .popup__close-icon {
+        top: -36px;
+        right: 0;
+        width: 20px;
+        height: 20px;
+    }
+}

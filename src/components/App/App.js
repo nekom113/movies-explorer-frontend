@@ -12,13 +12,22 @@ import {CurrentUserContext} from "../../context/CurrentUserContext";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import mainApi from "../../utils/MainApi";
 import {getJWTByLocalStorage} from "../../utils/utils";
+import InfoTooltip from "../InfoTooltip/InfoTooltip";
 
 export default function App() {
     const navigate = useNavigate()
     const [currentUser, setCurrentUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
     const value = useMemo(() => ({currentUser, setCurrentUser}), [currentUser])
+    const [tooltipSettings, setTooltipSettings] = useState({
+        state: '',
+        isOpen: false,
+        message: ''
+    })
 
+    const handelClosePopup = () => {
+        setTooltipSettings({...tooltipSettings, isOpen: false})
+    }
     useEffect(() => {
         const token = getJWTByLocalStorage()
         if (token) {
@@ -31,7 +40,7 @@ export default function App() {
         const token = localStorage.getItem('jwt')
         if (token) {
             mainApi.checkDataUser(token)
-                .then((data) => {
+                .then(() => {
                     setLoggedIn(true);
                 })
                 .then(() => navigate("/", {replace: true}))
@@ -73,12 +82,14 @@ export default function App() {
                                 loggedIn={loggedIn}
                                 setLoggedIn={setLoggedIn}
                                 setCurrentUser={setCurrentUser}
+                                setTooltipSettings={setTooltipSettings}
                             />
 
                         }
                         />
                         <Route path='/signin' element={
                             <Login
+                                setTooltipSettings={setTooltipSettings}
                                 navigate={navigate}
                                 setLoggedIn={setLoggedIn}
                             />
@@ -88,12 +99,18 @@ export default function App() {
                             <Register
                                 navigate={navigate}
                                 setLoggedIn={setLoggedIn}
+                                setTooltipSettings={setTooltipSettings}
                             />
                         }/>
                         <Route path='*' element={<NotFound/>}/>
                     </Routes>
                 </div>
             </div>
+            <InfoTooltip
+                isOpenConfig={tooltipSettings}
+                onClose={handelClosePopup}
+                toolTipText={tooltipSettings.message}
+            />
         </CurrentUserContext.Provider>
 
     )

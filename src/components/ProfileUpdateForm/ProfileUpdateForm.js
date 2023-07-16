@@ -3,12 +3,12 @@ import {useNavigate} from "react-router-dom";
 import {useContext, useState} from "react";
 import {CurrentUserContext} from "../../context/CurrentUserContext";
 import mainApi from "../../utils/MainApi";
-import {getJWTByLocalStorage} from "../../utils/utils";
+import {getJWTByLocalStorage, TOOL_TIP_MESSAGES} from "../../utils/utils";
 
 
 import ('./ProfileUpdateForm.css')
 
-export default function ProfileUpdateForm({loggedIn, setLoggedIn}) {
+export default function ProfileUpdateForm({loggedIn, setLoggedIn, setTooltipSettings}) {
     const token = getJWTByLocalStorage()
     const navigate = useNavigate();
     const {currentUser, setCurrentUser} = useContext(CurrentUserContext)
@@ -17,6 +17,10 @@ export default function ProfileUpdateForm({loggedIn, setLoggedIn}) {
     const handleSubmitUpdateUserData = (e) => {
         e.preventDefault()
         mainApi.setProfileInfo(currentUser, token).then(data => setCurrentUser(data))
+            .catch(() => {
+                    setTooltipSettings({isOpen: true, status: false, message: TOOL_TIP_MESSAGES.duplicate_data_error})
+                }
+            )
         setActiveModeInput(false)
     }
     return (

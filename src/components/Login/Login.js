@@ -1,8 +1,9 @@
 import './Login.css'
 import RegLoginUserForm from "../RegLoginUserForm/RegLoginUserForm";
 import mainApi from "../../utils/MainApi";
+import {TOOL_TIP_MESSAGES} from "../../utils/utils";
 
-export default function Login({navigate, setLoggedIn}) {
+export default function Login({navigate, setLoggedIn, setTooltipSettings}) {
     const handleAuthorithation = (authData) => {
         return mainApi.getAuthorizationUser(authData)
             .then(response => {
@@ -10,6 +11,10 @@ export default function Login({navigate, setLoggedIn}) {
                 navigate('/movies')
                 setLoggedIn(true)
             })
+            .catch(() => {
+                        setTooltipSettings({ isOpen: true, status: false, message: TOOL_TIP_MESSAGES.auth_error })
+                }
+            )
 
     }
     return (
