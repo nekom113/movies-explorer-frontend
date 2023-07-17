@@ -2,7 +2,7 @@ export const BASE_URL = 'https://api.movies-explorer.nomoreparties.sbs'
 export const MOVIE_BASE_URL = 'https://api.nomoreparties.co'
 
 
-export const getJWTByLocalStorage = () =>{
+export const getJWTByLocalStorage = () => {
     return localStorage.getItem('jwt')
 }
 
@@ -13,3 +13,13 @@ export const TOOL_TIP_MESSAGES = {
     internal_server_error: 'На сервере произошла ошибка.',
 
 }
+
+export function searchMoviesByKeyWord(array, keyWord) {
+    return array.filter(movie => movie.nameRU.toLowerCase().includes(keyWord.toLowerCase()));
+}
+
+export function filterMoviesByDuration(array) {
+    return array.filter(item => item.duration <= 40);
+}
+
+

@@ -2,11 +2,8 @@ import './MoviesCardList.css'
 import MoviesCard from "../MoviesCard/MoviesCard";
 import {MOVIE_BASE_URL} from "../../utils/utils";
 
-export default function MoviesCardList({savedMovieBtnIsActive, btnElse, moviesList}) {
-    let checkedMoviesList = moviesList
-    if (!Array.isArray(moviesList)) {
-        return checkedMoviesList = []
-    }
+export default function MoviesCardList({savedMovieBtnIsActive, btnElse, searchMoviesList}) {
+    const checkedMoviesList = (Array.isArray(searchMoviesList)) ? searchMoviesList : []
     return (
         <section className='section-movie-cards'>
             <div className='section-movie-cards-list__block'>

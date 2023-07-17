@@ -17,6 +17,10 @@ import InfoTooltip from "../InfoTooltip/InfoTooltip";
 export default function App() {
     const navigate = useNavigate()
     const [currentUser, setCurrentUser] = useState({})
+
+    const [moviesList, setMoviesList] = useState({})
+    const [savedMoviesList, setSavedMoviesList] = useState([])
+
     const [loggedIn, setLoggedIn] = useState(false)
     const value = useMemo(() => ({currentUser, setCurrentUser}), [currentUser])
     const [tooltipSettings, setTooltipSettings] = useState({
@@ -63,6 +67,12 @@ export default function App() {
                             <ProtectedRoute isLogged={loggedIn}>
                                 <Movies
                                     loggedIn={loggedIn}
+                                    setLoggedIn={setLoggedIn}
+                                    currentUser={currentUser}
+                                    moviesList={moviesList}
+                                    setMoviesList={setMoviesList}
+                                    savedMoviesList={savedMoviesList}
+                                    setSavedMoviesList={setSavedMoviesList}
                                 />
                             </ProtectedRoute>
                         }

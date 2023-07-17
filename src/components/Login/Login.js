@@ -11,8 +11,8 @@ export default function Login({navigate, setLoggedIn, setTooltipSettings}) {
                 navigate('/movies')
                 setLoggedIn(true)
             })
-            .catch(() => {
-                        setTooltipSettings({ isOpen: true, status: false, message: TOOL_TIP_MESSAGES.auth_error })
+            .catch((errorObj) => {
+                        setTooltipSettings({ isOpen: true, status: false, message: errorObj?.message || TOOL_TIP_MESSAGES.auth_error })
                 }
             )
 

@@ -10,7 +10,8 @@ class MainApi {
         if (res.ok) {
             return res.json()
         }
-        return Promise.reject(`Ошибка: ${res.status}`)
+        return res.json().then(data => Promise.reject({status: res.status, message: data?.message}))
+        // return Promise.reject(`Ошибка: ${res.status}`)
     }
 
     getRegistrationUser({password, email, name}) {
@@ -60,7 +61,7 @@ class MainApi {
     }
     setProfileInfo(userData, token) {
         console.log({userData})
-        const { name, email } = userData
+        const {name, email} = userData
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
             headers: {

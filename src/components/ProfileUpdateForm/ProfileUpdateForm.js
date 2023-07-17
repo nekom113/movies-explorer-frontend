@@ -64,8 +64,6 @@ export default function ProfileUpdateForm({loggedIn, setLoggedIn, setTooltipSett
                         />
                     </label>
                     <div className='section-profile-update__buttons-container'>
-                        <span className='section-profile-update__error' style={{display: 'none'}}>При обновлении профиля произошла ошибка.</span>
-
                         {isActiveModeInput ?
                             <button
                                 type='button'

@@ -5,19 +5,32 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import {useState} from "react";
 
-export default function Movies({loggedIn}) {
-    const [moviesList, setMoviesList] = useState({})
+export function getSearchMoviesByLocalStorage(lsKey) {
+    return localStorage.getItem(lsKey) ? JSON.parse(localStorage.getItem(lsKey)) : {}
+}
+export default function Movies({
+                                   loggedIn,
+                                   setMoviesList,
+                                   savedMoviesList,
+                                   setSavedMoviesList,
+                               }) {
+    const [searchMoviesList, setSearchMoviesList] = useState(getSearchMoviesByLocalStorage('moviesListSearched'))
+
     return (
         <>
             <Header loggedIn={loggedIn}/>
             <main>
                 <SearchForm
                     setMoviesList={setMoviesList}
+                    savedMoviesList={savedMoviesList}
+                    setSavedMoviesList={setSavedMoviesList}
+                    setSearchMoviesList={setSearchMoviesList}
+                    searchMoviesList={searchMoviesList}
                 />
                 <MoviesCardList
                     savedMovieBtnIsActive={false}
                     btnElse={true}
-                    moviesList={moviesList}
+                    searchMoviesList={searchMoviesList}
                 />
             </main>
             <Footer/>
