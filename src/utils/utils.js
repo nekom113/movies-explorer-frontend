@@ -15,7 +15,8 @@ export const TOOL_TIP_MESSAGES = {
 }
 
 export function searchMoviesByKeyWord(array, keyWord) {
-    return array.filter(movie => movie.nameRU.toLowerCase().includes(keyWord.toLowerCase()));
+    const checkedArray = Array.isArray(array) ? array : []
+    return checkedArray.filter(movie => movie.nameRU.toLowerCase().includes(keyWord.toLowerCase()));
 }
 
 export function filterMoviesByDuration(array) {
@@ -23,3 +24,25 @@ export function filterMoviesByDuration(array) {
 }
 
 
+export default function durationFormatConverter (originValue){
+    const hours = Math.floor(originValue/60);
+    const minutes = originValue % 60;
+    if(hours > 0) {
+        return `${hours}ч ${minutes}м`;
+    } else {
+        let ending;
+        if(minutes >= 11 && minutes <= 14) {
+            ending = 'минут';
+        }
+        else if(originValue % 10 === 1) {
+            ending = 'минута';
+        }
+        else if(originValue % 10 >= 2 && originValue % 10 <= 4) {
+            ending = 'минуты';
+        }
+        else {
+            ending = 'минут'
+        }
+        return (originValue + ' ' + ending);
+    }
+}

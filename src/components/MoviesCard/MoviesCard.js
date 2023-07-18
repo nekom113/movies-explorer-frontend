@@ -1,8 +1,9 @@
 import './MoviesCard.css'
 import React, {useState} from "react";
+import durationFormatConverter from "../../utils/utils";
 
 export default function MoviesCard({movieName, movieDuration, moviePoster, savedMovieBtnIsActive, linkToMovie}) {
-    const [isActive, setActive] = useState(true)
+    const [isActive, setActive] = useState(false)
     return (
         <div className='movie-card'>
             <a
@@ -17,7 +18,7 @@ export default function MoviesCard({movieName, movieDuration, moviePoster, saved
             <div className='movie-card__caption-block'>
                 <div className='movie-card__text-wrapper'>
                     <h2 className='movie-card__title'>{movieName}</h2>
-                    <p className='movie-card__subtitle'>{movieDuration}</p>
+                    <p className='movie-card__subtitle'>{durationFormatConverter(movieDuration) }</p>
                 </div>
                 {savedMovieBtnIsActive ? (
                         <div className='movie-card__btn-wrapper'
