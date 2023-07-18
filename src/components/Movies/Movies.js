@@ -13,14 +13,17 @@ export default function Movies({
                                    setMoviesList,
                                    savedMoviesList,
                                    setSavedMoviesList,
+                                   moviesList
                                }) {
     const [searchMoviesList, setSearchMoviesList] = useState(getSearchMoviesByLocalStorage('moviesListSearched'))
+
 
     return (
         <>
             <Header loggedIn={loggedIn}/>
             <main>
                 <SearchForm
+                    moviesList={moviesList}
                     setMoviesList={setMoviesList}
                     savedMoviesList={savedMoviesList}
                     setSavedMoviesList={setSavedMoviesList}

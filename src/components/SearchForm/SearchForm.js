@@ -1,18 +1,36 @@
 import './SearchForm.css'
 import moviesApi from "../../utils/MoviesApi";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {searchMoviesByKeyWord} from "../../utils/utils";
 
 
-
-export default function SearchForm({setMoviesList, setSearchMoviesList, searchMoviesList}) {
-    const inputValue = searchMoviesList.searchRequest ? searchMoviesList.searchRequest:''
-    const [inputSearch, setInputSearch] = useState(inputValue)
+export default function SearchForm({
+                                       setMoviesList, setSearchMoviesList, searchMoviesList, moviesList
+}) {
+    // const inputValue = searchMoviesList.searchRequest ? searchMoviesList.searchRequest : ''
+    const [inputSearch, setInputSearch] = useState(searchMoviesList.searchRequest ? searchMoviesList.searchRequest : '')
     const [inputIsBlocked, setInputIsBlocked] = useState(false)
+    const [shortMovToggleIsActive, setShortMovToggle] = useState(false)
 
+    useEffect(() => {
+        setSearchMoviesList(searchMoviesByKeyWord(moviesList, inputSearch))
+    }, [moviesList, inputSearch])
+    const updateLockalStorageSerchedData = (input, moviesList, shortBtnActive) => {
+        localStorage.setItem('moviesListSearched', JSON.stringify(
+            {
+                searchRequest: input,
+                searchResult: moviesList,
+                shortMoviesListShow: shortBtnActive,
+            }));
+    }
 
-    const handleSubmitSearchForm = (event,) => {
+    const handleSwitchShortMov = () => {
+        setShortMovToggle(!shortMovToggleIsActive)
+        updateLockalStorageSerchedData(inputSearch, searchMoviesList, shortMovToggleIsActive)
+    }
+
+    const handleSubmitSearchForm = (event) => {
         event.preventDefault()
         if (inputSearch.length) {
             moviesApi.getMovies().then(data => {
@@ -20,11 +38,7 @@ export default function SearchForm({setMoviesList, setSearchMoviesList, searchMo
                 const searchMovies = searchMoviesByKeyWord(data, inputSearch)
                 setSearchMoviesList(searchMovies)
                 localStorage.setItem('moviesList', JSON.stringify(data));
-                localStorage.setItem('moviesListSearched', JSON.stringify(
-                    {
-                        searchRequest: inputSearch,
-                        searchResult: searchMovies,
-                    }));
+                updateLockalStorageSerchedData(inputSearch, searchMovies, shortMovToggleIsActive)
 
             })
             setInputIsBlocked(false)
@@ -65,6 +79,9 @@ export default function SearchForm({setMoviesList, setSearchMoviesList, searchMo
                         className="section-search__toggle-input"
                         type="checkbox"
                         id="switch"
+                        name="switch"
+                        onChange={handleSwitchShortMov}
+                        checked={shortMovToggleIsActive}
                     />
                     <label htmlFor="switch" className="section-search__toggle-label"/>
                     <span className="section-search__toggle-text">Короткометражки</span>
