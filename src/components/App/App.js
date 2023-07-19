@@ -18,13 +18,13 @@ export default function App() {
     const navigate = useNavigate()
     const [currentUser, setCurrentUser] = useState({})
 
-    const [moviesList, setMoviesList] = useState({})
+
     const [savedMoviesList, setSavedMoviesList] = useState([])
 
     const [loggedIn, setLoggedIn] = useState(false)
     const value = useMemo(() => ({currentUser, setCurrentUser}), [currentUser])
     const [tooltipSettings, setTooltipSettings] = useState({
-        state: '',
+        state: false,
         isOpen: false,
         message: ''
     })
@@ -69,10 +69,9 @@ export default function App() {
                                     loggedIn={loggedIn}
                                     setLoggedIn={setLoggedIn}
                                     currentUser={currentUser}
-                                    moviesList={moviesList}
-                                    setMoviesList={setMoviesList}
                                     savedMoviesList={savedMoviesList}
                                     setSavedMoviesList={setSavedMoviesList}
+                                    setTooltipSettings={setTooltipSettings}
                                 />
                             </ProtectedRoute>
                         }

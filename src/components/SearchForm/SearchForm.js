@@ -1,57 +1,43 @@
 import './SearchForm.css'
-import moviesApi from "../../utils/MoviesApi";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import {useEffect, useState} from "react";
-import {searchMoviesByKeyWord} from "../../utils/utils";
 
 
 export default function SearchForm({
-                                       setMoviesList, setSearchMoviesList, searchMoviesList, moviesList
-}) {
-    // const inputValue = searchMoviesList.searchRequest ? searchMoviesList.searchRequest : ''
-    const [inputSearch, setInputSearch] = useState(searchMoviesList.searchRequest ? searchMoviesList.searchRequest : '')
+                                       sectionName,
+                                       searchMovies,
+                                       inputSearch,
+                                       handleSwitchShortMov,
+                                       shortMovToggleIsActive
+
+                                   }) {
+
+    const [searchInput, setSearchInput] = useState('');
     const [inputIsBlocked, setInputIsBlocked] = useState(false)
-    const [shortMovToggleIsActive, setShortMovToggle] = useState(false)
 
-    useEffect(() => {
-        setSearchMoviesList(searchMoviesByKeyWord(moviesList, inputSearch))
-    }, [moviesList, inputSearch])
-    const updateLockalStorageSerchedData = (input, moviesList, shortBtnActive) => {
-        localStorage.setItem('moviesListSearched', JSON.stringify(
-            {
-                searchRequest: input,
-                searchResult: moviesList,
-                shortMoviesListShow: shortBtnActive,
-            }));
-    }
-
-    const handleSwitchShortMov = () => {
-        setShortMovToggle(!shortMovToggleIsActive)
-        updateLockalStorageSerchedData(inputSearch, searchMoviesList, shortMovToggleIsActive)
-    }
-
-    const handleSubmitSearchForm = (event) => {
-        event.preventDefault()
-        if (inputSearch.length) {
-            moviesApi.getMovies().then(data => {
-                setMoviesList(data)
-                const searchMovies = searchMoviesByKeyWord(data, inputSearch)
-                setSearchMoviesList(searchMovies)
-                localStorage.setItem('moviesList', JSON.stringify(data));
-                updateLockalStorageSerchedData(inputSearch, searchMovies, shortMovToggleIsActive)
-
-            })
+    const handleSubmitSearchForm = (e) => {
+        e.preventDefault()
+        if (!!searchInput) {
+            searchMovies(searchInput)
             setInputIsBlocked(false)
-            return
         }
-        setMoviesList([])
         return setInputIsBlocked(true)
     }
-
-
+    useEffect(() => {
+        if (sectionName === 'movies') {
+            const inputValueFromLS = localStorage.getItem('inputValueSearchMov')
+            if (inputValueFromLS) {
+                setSearchInput(inputValueFromLS);
+            }
+        }
+    }, [sectionName]);
     return (
         <section className="section-search">
-            <form className="section-search__form">
+            <form
+                className="section-search__form"
+                onSubmit={handleSubmitSearchForm}
+                noValidate
+            >
                 <label className="section-search__container">
                     <input
                         className="section-search__form-input"
@@ -59,16 +45,15 @@ export default function SearchForm({
                         required={true}
                         value={inputSearch}
                         onChange={(e) => {
-                            setInputSearch(e.target.value)
+                            setSearchInput(e.target.value)
                             setInputIsBlocked(false)
                         }}
                     />
-                    <input
+                    <button
                         type="submit"
                         className="section-search__form-button"
-                        value="Поиск"
-                        onClick={handleSubmitSearchForm}
-                    />
+                    >Поиск
+                    </button>
                 </label>
                 <ErrorMessage
                     errorIsActive={inputIsBlocked}
