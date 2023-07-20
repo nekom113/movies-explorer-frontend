@@ -26,11 +26,6 @@ export default function Movies({
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
 
-
-    // const inputValue = searchMoviesList.searchRequest ? searchMoviesList.searchRequest : ''
-
-    const [shortMovToggleIsActive, setShortMovToggle] = useState(false)
-
     const searchMovies = (searchValue) => {
         setIsLoading(true);
         setIsSearchActive(true);
@@ -72,13 +67,6 @@ export default function Movies({
         }
         localStorage.removeItem('filterActive');
     }
-    const handleCheckBox = () => {
-        if (isFilterActive) {
-            localStorage.removeItem('filterActive')
-        }
-        localStorage.setItem('filterActive', 'true');
-        setIsFilterActive((state) => !state);
-    }
     const addMovies = () => {
         let loadingCards = windowSize > 1024 ? 3 : 2;
         setSeparatedMovies((val) => {
@@ -86,14 +74,14 @@ export default function Movies({
         })
     }
     useEffect(() => {
-        if(isFilterActive) {
+        if (isFilterActive) {
             setFilteredMovies(filterMoviesByDuration(searchMoviesList))
         } else {
             setFilteredMovies(searchMoviesList);
         }
     }, [isFilterActive, searchMoviesList])
 
-    useEffect (() => {
+    useEffect(() => {
         let limit;
         if (windowSize > 1024) {
             limit = 3;
@@ -102,7 +90,7 @@ export default function Movies({
         } else {
             limit = 5;
         }
-        if(filteredMovies.length > limit) {
+        if (filteredMovies.length > limit) {
             setSeparatedMovies(filteredMovies.slice(0, limit))
         } else {
             setSeparatedMovies(filteredMovies);
@@ -113,16 +101,24 @@ export default function Movies({
         const allMovies = localStorage.getItem('allMoviesList');
         const searched = localStorage.getItem('searchedMoviesList');
         const isChecked = localStorage.getItem('filterActive');
-        if(allMovies) {
+        if (allMovies) {
             setMoviesList(JSON.parse(allMovies));
         }
-        if(searched) {
+        if (searched) {
             setSearchMoviesList(JSON.parse(searched));
         }
-        if(isChecked) {
+        if (isChecked) {
             setIsFilterActive(true);
         }
-    },[])
+    }, [])
+
+    const handleSwitchShortMov = () => {
+        if (isFilterActive) {
+            localStorage.removeItem('filterActive')
+        }
+        localStorage.setItem('filterActive', 'true');
+        setIsFilterActive((state) => !state);
+    }
 
     return (
         <>
@@ -130,33 +126,25 @@ export default function Movies({
             <main>
                 <SearchForm
                     sectionName={'movies'}
+                    searchMovies={searchMovies}
+                    handleSwitchShortMov={handleSwitchShortMov}
+                    isFilterShortMovActive={isFilterActive}
+
                     moviesList={moviesList}
                     savedMoviesList={savedMoviesList}
                     setSavedMoviesList={setSavedMoviesList}
                     searchMoviesList={searchMoviesList}
-
-
-                    searchMovies={searchMovies}
                 />
                 {isLoading ? <Preloader/> :
                     <MoviesCardList
                         savedMovieBtnIsActive={false}
                         searchMoviesList={searchMoviesList}
-                        shortMovToggleIsActive={shortMovToggleIsActive}
-                        separatedMovies={separatedMovies}
+                        partOfMovies={separatedMovies}
                         filteredMovies={filteredMovies}
+                        isFilterActive={isFilterActive}
                         addMovies={addMovies}
 
                     />}
-                {
-                    <button
-                        className='section-movie-cards__loading-btn'
-                        type='button'
-                        onClick={addMovies}
-                    >
-                        Ещё
-                    </button>
-                }
                 {!isLoading && !isError && isSearchActive && filteredMovies.length === 0 &&
                     <p className='nothing-found-message'> Ничего не найдено!</p>
                 }

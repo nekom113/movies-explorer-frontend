@@ -6,9 +6,8 @@ import {useEffect, useState} from "react";
 export default function SearchForm({
                                        sectionName,
                                        searchMovies,
-                                       inputSearch,
                                        handleSwitchShortMov,
-                                       shortMovToggleIsActive
+                                       isFilterShortMovActive
 
                                    }) {
 
@@ -20,14 +19,16 @@ export default function SearchForm({
         if (!!searchInput) {
             searchMovies(searchInput)
             setInputIsBlocked(false)
+            return
         }
         return setInputIsBlocked(true)
     }
     useEffect(() => {
         if (sectionName === 'movies') {
-            const inputValueFromLS = localStorage.getItem('inputValueSearchMov')
+            const inputValueFromLS = localStorage.getItem('searchValue')
             if (inputValueFromLS) {
                 setSearchInput(inputValueFromLS);
+                setInputIsBlocked(false)
             }
         }
     }, [sectionName]);
@@ -43,7 +44,7 @@ export default function SearchForm({
                         className="section-search__form-input"
                         placeholder="Фильм"
                         required={true}
-                        value={inputSearch}
+                        value={searchInput}
                         onChange={(e) => {
                             setSearchInput(e.target.value)
                             setInputIsBlocked(false)
@@ -66,7 +67,7 @@ export default function SearchForm({
                         id="switch"
                         name="switch"
                         onChange={handleSwitchShortMov}
-                        checked={shortMovToggleIsActive}
+                        checked={isFilterShortMovActive}
                     />
                     <label htmlFor="switch" className="section-search__toggle-label"/>
                     <span className="section-search__toggle-text">Короткометражки</span>
