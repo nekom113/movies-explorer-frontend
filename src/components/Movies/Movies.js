@@ -8,13 +8,17 @@ import {filterMoviesByDuration, searchMoviesByKeyWord} from "../../utils/utils";
 import Preloader from "../Preloader/Preloader";
 import moviesApi from "../../utils/MoviesApi";
 import useScreenSize from "../../Hooks/useSreenSize";
+import mainApi from "../../utils/MainApi";
 
 
 export default function Movies({
                                    loggedIn,
                                    savedMoviesList,
                                    setSavedMoviesList,
-                                   setTooltipSettings
+                                   setTooltipSettings,
+                                   handleDeleteSavedMove,
+                                   isLoading,
+                                   setIsLoading
                                }) {
     const windowSize = useScreenSize()
     const [moviesList, setMoviesList] = useState([])
@@ -23,13 +27,11 @@ export default function Movies({
     const [filteredMovies, setFilteredMovies] = useState([]);
     const [isSearchActive, setIsSearchActive] = useState(false);
     const [isFilterActive, setIsFilterActive] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-    const [isError, setIsError] = useState(false);
+
 
     const searchMovies = (searchValue) => {
         setIsLoading(true);
         setIsSearchActive(true);
-        setIsError(false)
         if (moviesList.length === 0) {
             localStorage.removeItem('allMoviesList')
             moviesApi.getMovies()
@@ -40,7 +42,7 @@ export default function Movies({
                     setSearchMoviesList(searchMoviesArray)
                     localStorage.setItem('searchedMoviesList', JSON.stringify(searchMoviesArray));
                     setIsLoading(false);
-                    setIsSearchActive(false);
+                    (searchMoviesArray.length > 0) ? setIsSearchActive(false) : setIsSearchActive(true);
 
                 })
                 .catch(err => {
@@ -50,7 +52,7 @@ export default function Movies({
                     setTooltipSettings({
                         state: false,
                         isOpen: true,
-                        message: 'При обращении к серверу произошла ошибка. Попробуйсте повторить запрос позднее'
+                        message: 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
                     })
                 })
 
@@ -59,7 +61,7 @@ export default function Movies({
             setSearchMoviesList(searchMoviesArray)
             localStorage.setItem('searchedMoviesList', JSON.stringify(searchMoviesArray));
             setIsLoading(false);
-            setIsSearchActive(false);
+            (searchMoviesArray.length > 0) ? setIsSearchActive(false) : setIsSearchActive(true);
         }
         localStorage.setItem('searchValue', searchValue)
         if (isFilterActive) {
@@ -117,7 +119,22 @@ export default function Movies({
             localStorage.removeItem('filterActive')
         }
         localStorage.setItem('filterActive', 'true');
-        setIsFilterActive((state) => !state);
+        setIsFilterActive(!isFilterActive);
+    }
+    const handleSaveMovie = (movieId, token, setToggle) => {
+        mainApi.saveMovie(movieId, token)
+            .then(response => {
+                setSavedMoviesList(prev => prev.concat(response))
+                setToggle(true)
+            })
+            .catch(err => {
+                console.error({err})
+                setTooltipSettings({
+                    state: false,
+                    isOpen: true,
+                    message: 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
+                })
+            })
     }
 
     return (
@@ -137,16 +154,19 @@ export default function Movies({
                 />
                 {isLoading ? <Preloader/> :
                     <MoviesCardList
-                        savedMovieBtnIsActive={false}
+                        sectionName='movie'
                         searchMoviesList={searchMoviesList}
                         partOfMovies={separatedMovies}
+                        savedMoviesList={savedMoviesList}
                         filteredMovies={filteredMovies}
                         isFilterActive={isFilterActive}
                         addMovies={addMovies}
+                        handleSaveMovie={handleSaveMovie}
+                        handleDeleteSavedMove={handleDeleteSavedMove}
 
                     />}
-                {!isLoading && !isError && isSearchActive && filteredMovies.length === 0 &&
-                    <p className='nothing-found-message'> Ничего не найдено!</p>
+                {!isLoading && isSearchActive && filteredMovies.length === 0 &&
+                    <p className='nothing-found-message'> Ничего не найдено</p>
                 }
             </main>
             <Footer/>

@@ -14,9 +14,6 @@ export const TOOL_TIP_MESSAGES = {
 
 }
 
-export function getSearchMoviesByLocalStorage(lsKey) {
-    return localStorage.getItem(lsKey) ? JSON.parse(localStorage.getItem(lsKey)) : {}
-}
 
 export function searchMoviesByKeyWord(array, searchValue) {
     const checkedArray = Array.isArray(array) ? array : []
@@ -27,13 +24,6 @@ export function filterMoviesByDuration(array) {
     return array.filter(item => item.duration <= 40);
 }
 
-export function searchMovies(array, searchValue, filterShortDurationIsActive) {
-    const searchAllMoviesByRequest = searchMoviesByKeyWord(array, searchValue);
-    if (filterShortDurationIsActive) {
-        return filterMoviesByDuration(searchAllMoviesByRequest)
-    }
-    return searchAllMoviesByRequest;
-}
 
 export default function durationFormatConverter(originValue) {
     const hours = Math.floor(originValue / 60);
@@ -54,3 +44,5 @@ export default function durationFormatConverter(originValue) {
         return (originValue + ' ' + ending);
     }
 }
+const urlRegex = /^http(s)?:\/\/(www\.)?[a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=]{1,256}\.[a-z]{1,6}\b[a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=]*$/;
+export {urlRegex}

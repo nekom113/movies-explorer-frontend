@@ -11,7 +11,6 @@ class MainApi {
             return res.json()
         }
         return res.json().then(data => Promise.reject({status: res.status, message: data?.message}))
-        // return Promise.reject(`Ошибка: ${res.status}`)
     }
 
     getRegistrationUser({password, email, name}) {
@@ -59,8 +58,8 @@ class MainApi {
         })
             .then(this._checkResponse)
     }
+
     setProfileInfo(userData, token) {
-        console.log({userData})
         const {name, email} = userData
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
@@ -72,6 +71,40 @@ class MainApi {
                 name,
                 email
             })
+        })
+            .then(this._checkResponse)
+    }
+
+    getSavedMovies(token) {
+        return fetch(`${this._baseUrl}/movies`, {
+            method: 'GET',
+            headers: {
+                authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(this._checkResponse)
+    }
+
+    saveMovie(movieData, token) {
+        return fetch(`${this._baseUrl}/movies`, {
+            method: 'POST',
+            headers: {
+                authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(movieData)
+        })
+            .then(this._checkResponse)
+    }
+
+    deleteMovie(movieId, token) {
+        return fetch(`${this._baseUrl}/movies/${movieId}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
         })
             .then(this._checkResponse)
     }

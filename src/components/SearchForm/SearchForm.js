@@ -16,7 +16,7 @@ export default function SearchForm({
 
     const handleSubmitSearchForm = (e) => {
         e.preventDefault()
-        if (!!searchInput) {
+        if (!!searchInput || sectionName === 'saved-movies') {
             searchMovies(searchInput)
             setInputIsBlocked(false)
             return

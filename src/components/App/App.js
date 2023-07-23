@@ -20,7 +20,7 @@ export default function App() {
 
 
     const [savedMoviesList, setSavedMoviesList] = useState([])
-
+    const [isLoading, setIsLoading] = useState(false);
     const [loggedIn, setLoggedIn] = useState(false)
     const value = useMemo(() => ({currentUser, setCurrentUser}), [currentUser])
     const [tooltipSettings, setTooltipSettings] = useState({
@@ -51,6 +51,43 @@ export default function App() {
         }
     }, [loggedIn])
 
+    useEffect(() => {
+        setIsLoading(true);
+        const token = getJWTByLocalStorage()
+        mainApi.getSavedMovies(token)
+            .then(movies => {
+                setSavedMoviesList(movies)
+                setIsLoading(false)
+            })
+            .catch(err => {
+                console.error({err})
+                setTooltipSettings({
+                    state: false,
+                    isOpen: true,
+                    message: 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
+                })
+            })
+    }, [])
+
+    const handleDeleteSavedMove = (movieId, setToggle) => {
+        const token = getJWTByLocalStorage()
+
+        mainApi.deleteMovie(movieId, token)
+            .then(response => {
+                setSavedMoviesList(prev => prev.filter(movie => movie._id !== response._id))
+                setToggle(false)
+            })
+            .catch(err => {
+                console.error({err})
+                setTooltipSettings({
+                    state: false,
+                    isOpen: true,
+                    message: 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
+                })
+            })
+    }
+
+
     return (
         <CurrentUserContext.Provider
             value={value}>
@@ -72,6 +109,9 @@ export default function App() {
                                     savedMoviesList={savedMoviesList}
                                     setSavedMoviesList={setSavedMoviesList}
                                     setTooltipSettings={setTooltipSettings}
+                                    handleDeleteSavedMove={handleDeleteSavedMove}
+                                    isLoading={isLoading}
+                                    setIsLoading={setIsLoading}
                                 />
                             </ProtectedRoute>
                         }
@@ -81,6 +121,12 @@ export default function App() {
 
                                 <SavedMovies
                                     loggedIn={loggedIn}
+                                    savedMoviesList={savedMoviesList}
+                                    setSavedMoviesList={setSavedMoviesList}
+                                    handleDeleteSavedMove={handleDeleteSavedMove}
+                                    setTooltipSettings={setTooltipSettings}
+                                    isLoading={isLoading}
+                                    setIsLoading={setIsLoading}
                                 />
                             </ProtectedRoute>
 

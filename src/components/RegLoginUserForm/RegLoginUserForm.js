@@ -33,7 +33,7 @@ export default function RegLoginUserForm({isRegistrationForm, handleOnSubmit}) {
 
     const handleChange = (e) => {
         const {name, value} = e.target
-        setValues((prevValue) => ({ ...prevValue, [name]: value }))
+        setValues((prevValue) => ({...prevValue, [name]: value}))
     }
     const handleOnSubmitForm = (e) => {
         e.preventDefault();
@@ -82,6 +82,7 @@ export default function RegLoginUserForm({isRegistrationForm, handleOnSubmit}) {
                         type="email"
                         name="email"
                         className='reg-log-section__input-field'
+                        // pattern='[a-zA-Z0-9_.]+@[a-zA-Z0-9_]+\\.{1,1}[a-z]{2,}'
                         minLength={2}
                         required={true}
                         onChange={handleChange}
