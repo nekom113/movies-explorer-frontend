@@ -65,9 +65,9 @@ export default function MoviesCard({
                             />
                         </div>)
                     :
-                    (<div className='movie-card__btn-wrapper' onClick={isActive ? deleteMovie : saveMovie}>
+                    (<div className='movie-card__btn-wrapper' onClick={!!isActive ? deleteMovie : saveMovie}>
                         <div
-                            className={`movie-card__btn movie-card__btn_${isActive ? 'saved' : 'unsaved'}`}
+                            className={`movie-card__btn movie-card__btn_${!!isActive ? 'saved' : 'unsaved'}`}
                         />
                     </div>)}
             </div>
