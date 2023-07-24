@@ -52,22 +52,25 @@ export default function App() {
     }, [loggedIn])
 
     useEffect(() => {
-        setIsLoading(true);
         const token = getJWTByLocalStorage()
-        mainApi.getSavedMovies(token)
-            .then(movies => {
-                setSavedMoviesList(movies)
-                setIsLoading(false)
-            })
-            .catch(err => {
-                console.error({err})
-                setTooltipSettings({
-                    state: false,
-                    isOpen: true,
-                    message: 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
+        if (loggedIn) {
+            setIsLoading(true);
+            mainApi.getSavedMovies(token)
+                .then(movies => {
+                    setSavedMoviesList(movies)
+                    setIsLoading(false)
                 })
-            })
-    }, [])
+                .catch(err => {
+                    console.error({err})
+                    setTooltipSettings({
+                        state: false,
+                        isOpen: true,
+                        message: 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
+                    })
+                })
+        }
+
+    }, [loggedIn])
 
     const handleDeleteSavedMove = (movieId, setToggle) => {
         const token = getJWTByLocalStorage()
@@ -145,14 +148,12 @@ export default function App() {
                         <Route path='/signin' element={
                             <Login
                                 setTooltipSettings={setTooltipSettings}
-                                navigate={navigate}
                                 setLoggedIn={setLoggedIn}
                             />
 
                         }/>
                         <Route path='/signup' element={
                             <Register
-                                navigate={navigate}
                                 setLoggedIn={setLoggedIn}
                                 setTooltipSettings={setTooltipSettings}
                             />

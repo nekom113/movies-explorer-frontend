@@ -1,41 +1,46 @@
 import {useCallback, useState} from "react";
 
 export default function useValidationForm() {
-    const [inputValue, setInputValue] = useState({});
-    const [inputError, setInputErrors] = useState({});
-    const [validationStatus, setValidationStatus] = useState(false);
-    const [currentNameInput, setCurrentNameInput] = useState('');
+    const [valuesForm, setValues] = useState({});
+    const [isValid, setIsValid] = useState(false);
+    const [errors, setErrors] = useState({});
+    const [currentNameInput, setCurrentNameInput] = useState({});
 
-    const handleChangeForm = (target) => {
-        const {name, value, validationMessage} = target;
-        setInputValue({
-            ...inputValue,
+    const handleChange = ({target}) => {
+        const {name, value, validationMessage, validity, form} = target;
+        setValues({
+            ...valuesForm,
             [name]: value
         });
-        setInputErrors({
-            ...inputError,
+        setCurrentNameInput({
+            ...currentNameInput,
+            [name]: validity.valid
+        });
+        setErrors({
+            ...errors,
             [name]: validationMessage
         });
-        setValidationStatus(target.closest("form").checkValidity());
-        setCurrentNameInput(name)
-    }
-    const resetForm = useCallback(() => {
-            setInputValue({})
-            setInputErrors({})
-            setValidationStatus(false)
-        }, [inputValue,
-            inputError,
-            validationStatus]
-    )
+        setIsValid(form.checkValidity());
+    };
 
-    return (
-        {
-            inputValue,
-            validationStatus,
-            inputError,
-            currentNameInput,
-            resetForm,
-            handleChangeForm,
-        }
-    )
+    const resetForm = useCallback(
+        (newIsValid, newValues, newErrors, newInputVilidities) => {
+            setErrors(newErrors || {});
+            setValues(newValues || {});
+            setIsValid(newIsValid || false);
+            setCurrentNameInput(newInputVilidities || {});
+
+        },
+        [setValues, setErrors, setIsValid, setCurrentNameInput]
+    );
+
+    return {
+        valuesForm,
+        errors,
+        isValid,
+        resetForm,
+        currentNameInput,
+        handleChange,
+    };
 };
+

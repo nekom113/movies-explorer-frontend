@@ -2,8 +2,11 @@ import './Register.css'
 import RegLoginUserForm from "../RegLoginUserForm/RegLoginUserForm";
 import mainApi from "../../utils/MainApi";
 import {TOOL_TIP_MESSAGES} from "../../utils/utils";
+import {useNavigate} from "react-router-dom";
 
-export default function Register({navigate, setLoggedIn, setTooltipSettings}) {
+export default function Register({setLoggedIn, setTooltipSettings}) {
+    const navigate = useNavigate()
+
     function handleRegistarationUser(userData) {
         mainApi.getRegistrationUser(userData)
             .then(() => {
@@ -38,7 +41,6 @@ export default function Register({navigate, setLoggedIn, setTooltipSettings}) {
         <RegLoginUserForm
             isRegistrationForm={true}
             handleOnSubmit={handleRegistarationUser}
-            navigate={navigate}
         />
     )
 }

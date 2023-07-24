@@ -1,7 +1,6 @@
 import './RegLoginUserForm.css'
 import Logo from "../Logo/Logo";
 import {Link} from "react-router-dom";
-import {useState} from "react";
 import useValidationForm from "../../Hooks/useValidationForm";
 
 export default function RegLoginUserForm({isRegistrationForm, handleOnSubmit}) {
@@ -18,26 +17,16 @@ export default function RegLoginUserForm({isRegistrationForm, handleOnSubmit}) {
             link_name: "Регистрация",
             question: 'Ещё не зарегистрированы?'
         }
-    const [values, setValues] = useState({
-        password: '111111',
-        email: 'test@test.ru',
-        name: "Alex"
-    })
     const {
-        inputValue,
-        validationStatus,
-        inputError,
-        currentNameInput,
-        handleChangeForm
+        valuesForm,
+        errors,
+        handleChange,
+        isValid,
     } = useValidationForm()
 
-    const handleChange = (e) => {
-        const {name, value} = e.target
-        setValues((prevValue) => ({...prevValue, [name]: value}))
-    }
     const handleOnSubmitForm = (e) => {
         e.preventDefault();
-        handleOnSubmit(values)
+        handleOnSubmit(valuesForm)
     }
     return (
         <main className='reg-log-section'>
@@ -61,15 +50,18 @@ export default function RegLoginUserForm({isRegistrationForm, handleOnSubmit}) {
                                 placeholder='Введите имя'
                                 type='text'
                                 name='name'
-                                className='reg-log-section__input-field'
+                                autoComplete="off"
+                                className={`reg-log-section__input-field ${errors.name ? 'reg-log-section__input-field-error' : ''}`}
                                 minLength={2}
                                 maxLength={30}
                                 required={true}
-                                value={values.name}
-                                // defaultValue='Александр'
+                                value={valuesForm.name}
                                 onChange={handleChange}
                             />
+
                             <span className='reg-log-section__hr'/>
+                            <span
+                                className="reg-log-section__error">{errors.name}</span>
                         </label>
                         <span className="reg-log-section__error"/>
                     </>
@@ -80,16 +72,19 @@ export default function RegLoginUserForm({isRegistrationForm, handleOnSubmit}) {
                     <input
                         placeholder='Введите E-mail'
                         type="email"
+                        autoComplete="off"
                         name="email"
-                        className='reg-log-section__input-field'
-                        // pattern='[a-zA-Z0-9_.]+@[a-zA-Z0-9_]+\\.{1,1}[a-z]{2,}'
+                        className={`reg-log-section__input-field ${errors.email ? 'reg-log-section__input-field-error' : ''}`}
+                        pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
                         minLength={2}
                         required={true}
                         onChange={handleChange}
-                        value={values.email}
+                        value={valuesForm.email}
 
                     />
                     <span className='reg-log-section__hr'/>
+                    <span className="reg-log-section__error">{errors.email}</span>
+
                 </label>
                 <span className="reg-log-section__error"/>
                 <label className='reg-log-section__label'>
@@ -98,19 +93,20 @@ export default function RegLoginUserForm({isRegistrationForm, handleOnSubmit}) {
                         type="password"
                         placeholder='Введите пароль'
                         name="password"
-                        className='reg-log-section__input-field reg-log-section__input-field-error'
+                        className={`reg-log-section__input-field ${errors.password ? 'reg-log-section__input-field-error' : ''}`}
                         minLength={2}
-                        value={values.password}
+                        value={valuesForm.password}
                         onChange={handleChange}
                         required={true}
                     />
                     <span className='reg-log-section__hr'/>
                 </label>
-                <span className="reg-log-section__error">{isRegistrationForm && 'что - то пошло не так'}</span>
+                <span className="reg-log-section__error">{errors.password}</span>
             </form>
             <div className='reg-log-section__container'>
                 <button
                     type='submit'
+                    disabled={!isValid}
                     form='reg-log-form'
                     className='reg-log-section__button'
                 >{formData.button_name}</button>
