@@ -21,6 +21,7 @@ export default function ProfileUpdateForm({loggedIn, setLoggedIn, setTooltipSett
     const {currentUser, setCurrentUser} = useContext(CurrentUserContext)
     const [isSameData, setSameData] = useState(false);
     const [isActiveModeInput, setActiveModeInput] = useState(false)
+    const [saveBtnIsBlock, setSaveBtnIsBlock] = useState(false)
 
     useEffect(() => {
         if (currentUser.name === valuesForm.name && currentUser.email === valuesForm.email) {
@@ -42,13 +43,18 @@ export default function ProfileUpdateForm({loggedIn, setLoggedIn, setTooltipSett
 
     const handleSubmitUpdateUserData = (e) => {
         e.preventDefault()
+        setSaveBtnIsBlock(true)
         mainApi.setProfileInfo(valuesForm, token).then(data => {
             setCurrentUser(data)
 
             setTooltipSettings({isOpen: true, status: true, message: TOOL_TIP_MESSAGES.update_profile_data_ok})
+            setActiveModeInput(false)
+            setSaveBtnIsBlock(false)
+
 
         })
             .catch((errorObj) => {
+                    setSaveBtnIsBlock(false)
                     setTooltipSettings({
                         isOpen: true,
                         status: false,
@@ -57,9 +63,7 @@ export default function ProfileUpdateForm({loggedIn, setLoggedIn, setTooltipSett
 
                 }
             )
-        setActiveModeInput(false)
     }
-    console.log({isValid})
     return (
         <>
             <Header loggedIn={loggedIn}/>
@@ -114,8 +118,8 @@ export default function ProfileUpdateForm({loggedIn, setLoggedIn, setTooltipSett
                         {isActiveModeInput ?
                             <button
                                 type='button'
-                                disabled={isSameData || !isValid}
-                                className={`section-profile-update__submit-btn ${isSameData || !isValid ? 'section-profile-update__submit-btn_inactive' : ''}`}
+                                disabled={saveBtnIsBlock || isSameData || !isValid}
+                                className={`section-profile-update__submit-btn ${saveBtnIsBlock || isSameData || !isValid ? 'section-profile-update__submit-btn_inactive' : ''}`}
                                 onClick={handleSubmitUpdateUserData}
                             >
                                 Сохранить
