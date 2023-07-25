@@ -52,7 +52,7 @@ export default function ProfileUpdateForm({loggedIn, setLoggedIn, setTooltipSett
                     setTooltipSettings({
                         isOpen: true,
                         status: false,
-                        message: errorObj?.message || TOOL_TIP_MESSAGES.duplicate_data_error
+                        message: TOOL_TIP_MESSAGES.duplicate_data_error || errorObj?.message
                     })
 
                 }

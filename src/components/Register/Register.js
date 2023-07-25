@@ -21,7 +21,7 @@ export default function Register({setLoggedIn, setTooltipSettings}) {
                             setTooltipSettings({
                                 isOpen: true,
                                 status: false,
-                                message: errorObj?.message || TOOL_TIP_MESSAGES.auth_error
+                                message: TOOL_TIP_MESSAGES.auth_error || errorObj?.message
                             })
                         }
                     )
@@ -31,7 +31,7 @@ export default function Register({setLoggedIn, setTooltipSettings}) {
                     setTooltipSettings({
                         isOpen: true,
                         status: false,
-                        message: errorObj?.message || TOOL_TIP_MESSAGES.duplicate_data_error
+                        message: TOOL_TIP_MESSAGES.duplicate_data_error || errorObj?.message
                     })
                 }
             )

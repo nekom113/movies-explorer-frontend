@@ -94,7 +94,7 @@ export default function RegLoginUserForm({isRegistrationForm, handleOnSubmit}) {
                         placeholder='Введите пароль'
                         name="password"
                         className={`reg-log-section__input-field ${errors.password ? 'reg-log-section__input-field-error' : ''}`}
-                        minLength={2}
+                        minLength={6}
                         value={valuesForm.password}
                         onChange={handleChange}
                         required={true}

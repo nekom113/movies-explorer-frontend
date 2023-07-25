@@ -11,14 +11,14 @@ export default function Login({setLoggedIn, setTooltipSettings}) {
         return mainApi.getAuthorizationUser(authData)
             .then(response => {
                 localStorage.setItem('jwt', response?.token);
-                navigate('/movies')
+                navigate('/')
                 setLoggedIn(true)
             })
             .catch((errorObj) => {
                     setTooltipSettings({
                         isOpen: true,
                         status: false,
-                        message: errorObj?.message || TOOL_TIP_MESSAGES.auth_error
+                        message: TOOL_TIP_MESSAGES.auth_error || errorObj?.message
                     })
                 }
             )
