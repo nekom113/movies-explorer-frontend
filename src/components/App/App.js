@@ -47,7 +47,7 @@ export default function App() {
                 .then(() => {
                     setLoggedIn(true);
                 })
-                .then(() => navigate("/", {replace: true}))
+                .then(() => navigate("/movies", {replace: true}))
         }
     }, [loggedIn])
 

@@ -11,7 +11,7 @@ export default function Login({setLoggedIn, setTooltipSettings}) {
         return mainApi.getAuthorizationUser(authData)
             .then(response => {
                 localStorage.setItem('jwt', response?.token);
-                navigate('/')
+                navigate('/movies')
                 setLoggedIn(true)
             })
             .catch((errorObj) => {
