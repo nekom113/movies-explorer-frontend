@@ -1,8 +1,9 @@
 import './RegLoginUserForm.css'
 import Logo from "../Logo/Logo";
 import {Link} from "react-router-dom";
+import useValidationForm from "../../Hooks/useValidationForm";
 
-export default function RegLoginUserForm({isRegistrationForm}) {
+export default function RegLoginUserForm({isRegistrationForm, handleOnSubmit}) {
     const formData = isRegistrationForm ?
         {
             title: 'Добро пожаловать!',
@@ -16,9 +17,16 @@ export default function RegLoginUserForm({isRegistrationForm}) {
             link_name: "Регистрация",
             question: 'Ещё не зарегистрированы?'
         }
-    const handleSubmit = e => {
-        e.preventDefault()
-        alert('Вы активировали отправку формы')
+    const {
+        valuesForm,
+        errors,
+        handleChange,
+        isValid,
+    } = useValidationForm()
+
+    const handleOnSubmitForm = (e) => {
+        e.preventDefault();
+        handleOnSubmit(valuesForm)
     }
     return (
         <main className='reg-log-section'>
@@ -28,9 +36,11 @@ export default function RegLoginUserForm({isRegistrationForm}) {
             </div>
 
             <form
-                className='reg-log-section__form'
+                action="#"
+                className="reg-log-section__form"
                 id="reg-log-form"
-                onSubmit={handleSubmit}
+                name="reg-log-form"
+                onSubmit={handleOnSubmitForm}
             >
                 {isRegistrationForm &&
                     <>
@@ -39,14 +49,19 @@ export default function RegLoginUserForm({isRegistrationForm}) {
                             <input
                                 placeholder='Введите имя'
                                 type='text'
-                                name='user-name'
-                                className='reg-log-section__input-field'
+                                name='name'
+                                autoComplete="off"
+                                className={`reg-log-section__input-field ${errors.name ? 'reg-log-section__input-field-error' : ''}`}
                                 minLength={2}
                                 maxLength={30}
                                 required={true}
-                                defaultValue='Александр'
+                                value={valuesForm.name}
+                                onChange={handleChange}
                             />
+
                             <span className='reg-log-section__hr'/>
+                            <span
+                                className="reg-log-section__error">{errors.name}</span>
                         </label>
                         <span className="reg-log-section__error"/>
                     </>
@@ -56,14 +71,20 @@ export default function RegLoginUserForm({isRegistrationForm}) {
                     <span className='reg-log-section__name'>E-mail</span>
                     <input
                         placeholder='Введите E-mail'
-                        type="text"
-                        name='registration-email'
-                        className='reg-log-section__input-field'
+                        type="email"
+                        autoComplete="off"
+                        name="email"
+                        className={`reg-log-section__input-field ${errors.email ? 'reg-log-section__input-field-error' : ''}`}
+                        pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
                         minLength={2}
                         required={true}
-                        defaultValue='pochta@yandex.ru'
+                        onChange={handleChange}
+                        value={valuesForm.email}
+
                     />
                     <span className='reg-log-section__hr'/>
+                    <span className="reg-log-section__error">{errors.email}</span>
+
                 </label>
                 <span className="reg-log-section__error"/>
                 <label className='reg-log-section__label'>
@@ -71,21 +92,24 @@ export default function RegLoginUserForm({isRegistrationForm}) {
                     <input
                         type="password"
                         placeholder='Введите пароль'
-                        name='registration-password'
-                        className='reg-log-section__input-field reg-log-section__input-field-error'
-                        minLength={2}
-                        defaultValue={isRegistrationForm ? "123456" : ''}
+                        name="password"
+                        className={`reg-log-section__input-field ${errors.password ? 'reg-log-section__input-field-error' : ''}`}
+                        minLength={6}
+                        value={valuesForm.password}
+                        onChange={handleChange}
                         required={true}
                     />
                     <span className='reg-log-section__hr'/>
                 </label>
-                <span className="reg-log-section__error">{isRegistrationForm && 'что - то пошло не так'}</span>
+                <span className="reg-log-section__error">{errors.password}</span>
             </form>
             <div className='reg-log-section__container'>
                 <button
-                    type='button'
+                    type='submit'
+                    disabled={!isValid}
+                    form='reg-log-form'
                     className='reg-log-section__button'
-                    onClick={() => alert(`Вы нажали на кнопку "${formData.button_name}"`)}>{formData.button_name}</button>
+                >{formData.button_name}</button>
                 <div className='reg-log-section__link-block'>
                     <p className='reg-log-section__question'>{formData.question}</p>
                     <Link to={isRegistrationForm ? '/signin' : '/signup'}

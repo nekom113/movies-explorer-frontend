@@ -1,33 +1,90 @@
 import Header from "../Header/Header";
 import {useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {useContext, useEffect, useState} from "react";
+import {CurrentUserContext} from "../../context/CurrentUserContext";
+import mainApi from "../../utils/MainApi";
+import {getJWTByLocalStorage, TOOL_TIP_MESSAGES} from "../../utils/utils";
+import useValidationForm from "../../Hooks/useValidationForm";
 
 import ('./ProfileUpdateForm.css')
 
-export default function ProfileUpdateForm() {
-    const userData = {name: "Александр", email: "alexander@alex.ru"}
+export default function ProfileUpdateForm({loggedIn, setLoggedIn, setTooltipSettings}) {
+    const {
+        valuesForm,
+        errors,
+        handleChange,
+        isValid,
+        resetForm
+    } = useValidationForm()
+    const token = getJWTByLocalStorage()
     const navigate = useNavigate();
+    const {currentUser, setCurrentUser} = useContext(CurrentUserContext)
+    const [isSameData, setSameData] = useState(false);
     const [isActiveModeInput, setActiveModeInput] = useState(false)
+    const [saveBtnIsBlock, setSaveBtnIsBlock] = useState(false)
+
+    useEffect(() => {
+        if (currentUser.name === valuesForm.name && currentUser.email === valuesForm.email) {
+            return setSameData(true);
+        }
+        return setSameData(false);
+    }, [currentUser, valuesForm])
+
+    useEffect(() => {
+        if (!currentUser.name) {
+            return
+        }
+        resetForm(false,
+            {
+                name: currentUser.name,
+                email: currentUser.email
+            });
+    }, [currentUser])
+
+    const handleSubmitUpdateUserData = (e) => {
+        e.preventDefault()
+        setSaveBtnIsBlock(true)
+        mainApi.setProfileInfo(valuesForm, token).then(data => {
+            setCurrentUser(data)
+
+            setTooltipSettings({isOpen: true, status: true, message: TOOL_TIP_MESSAGES.update_profile_data_ok})
+            setActiveModeInput(false)
+            setSaveBtnIsBlock(false)
 
 
+        })
+            .catch((errorObj) => {
+                    setSaveBtnIsBlock(false)
+                    setTooltipSettings({
+                        isOpen: true,
+                        status: false,
+                        message: TOOL_TIP_MESSAGES.duplicate_data_error || errorObj?.message
+                    })
+
+                }
+            )
+    }
     return (
         <>
-            <Header userSignin={true}/>
+            <Header loggedIn={loggedIn}/>
             <main className='section-profile-update'>
-                <h1 className='section-profile-update__title'>{`Привет, ${userData.name}!`}</h1>
+                <h1 className='section-profile-update__title'>{`Привет, ${currentUser.name}!`}</h1>
 
                 <form className='section-profile-update__form'
                       id="profile-update__form"
                 >
-                    {/*<div className='section-profile-update__main-container'>*/}
 
                     <label className='section-profile-update__label'>
                         <span className='section-profile-update__name'>Имя</span>
                         <input
                             type="text"
-                            name='profile-update__name'
+                            name='name'
+                            autoComplete="off"
                             className='section-profile-update__input-field'
-                            defaultValue={userData.name}
+                            onChange={(e) => {
+                                handleChange(e)
+                            }}
+                            value={valuesForm.name}
                             minLength={2}
                             maxLength={30}
                             required={true}
@@ -35,29 +92,35 @@ export default function ProfileUpdateForm() {
                             disabled={!isActiveModeInput}
                         />
                     </label>
+                    <span className="reg-log-section__error">{errors.name}</span>
                     <span className='section-profile-update__hr'/>
                     <label className='section-profile-update__label'>
                         <span className='section-profile-update__name'>E-mail</span>
                         <input
                             type="text"
-                            name='profile-update__name'
+                            name='email'
                             className='section-profile-update__input-field'
-                            defaultValue={userData.email}
-                            minLength={2}
+                            autoComplete="off"
+                            value={valuesForm.email}
+                            pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                            onChange={(e) => {
+                                handleChange(e)
+                            }}
+                            minLength={6}
                             required={true}
                             placeholder="Введите email"
                             disabled={!isActiveModeInput}
                         />
                     </label>
-                    {/*</div>*/}
-                    <div className='section-profile-update__buttons-container'>
-                        <span className='section-profile-update__error' style={{display: 'none'}}>При обновлении профиля произошла ошибка.</span>
+                    <span className="reg-log-section__error">{errors.email}</span>
 
+                    <div className='section-profile-update__buttons-container'>
                         {isActiveModeInput ?
                             <button
                                 type='button'
-                                className='section-profile-update__submit-btn'
-                                onClick={() => setActiveModeInput(false)}
+                                disabled={saveBtnIsBlock || isSameData || !isValid}
+                                className={`section-profile-update__submit-btn ${saveBtnIsBlock || isSameData || !isValid ? 'section-profile-update__submit-btn_inactive' : ''}`}
+                                onClick={handleSubmitUpdateUserData}
                             >
                                 Сохранить
                             </button>
@@ -73,7 +136,12 @@ export default function ProfileUpdateForm() {
                                 <button
                                     type='button'
                                     className="section-profile-update__exit-btn"
-                                    onClick={() => navigate("/", {replace: true})}>
+                                    onClick={() => {
+                                        setLoggedIn(false);
+                                        setCurrentUser(null);
+                                        localStorage.clear();
+                                        navigate("/", {replace: true})
+                                    }}>
                                     Выйти из аккаунта
                                 </button>
                             </>
